@@ -1,0 +1,1126 @@
+/* ============================================================
+   Menu10 — site institucional
+   Mundo "Antigravidade": campo branco, detalhes roxos, tudo leve.
+   Partículas formam a marca, hexágonos flutuam, o celular paira.
+   Sem preto: a tinta mais escura é um roxo muito profundo.
+   ============================================================ */
+
+:root {
+  color-scheme: only light;   /* não deixar o navegador forçar modo escuro */
+  --roxo: #8000bb;              /* a cor da marca: ações, destaques, números */
+  --roxo-forte: #6a009c;        /* hover das ações roxas */
+  --roxo-faixa: #7700a9;        /* faixas roxas (clientes e fechamento) */
+  --lilas: #f0e5f6;             /* hexágonos e superfícies de destaque */
+  --lilas-2: #e2cdef;           /* hover dos hexágonos, fio da linha do tempo */
+  --lilas-fundo: #faf6fd;       /* seções alternadas */
+  --lilas-borda: #e6dcee;       /* contornos finos */
+  --lilas-no-roxo: #eadcff;     /* texto secundário sobre o roxo */
+  --tinta: #2a1a3a;             /* títulos e texto forte: roxo profundo, nunca preto */
+  --texto: #463a52;             /* texto corrido */
+  --texto-suave: #6e6474;       /* apoio, legendas, fontes */
+  --branco: #ffffff;
+  --maps: #ea4335;              /* só no pino do Google Maps */
+  --waze: #0786b3;              /* só no ícone do Waze */
+
+  --fonte: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --raio: 16px;
+  --pilula: 999px;
+  --container: 1200px;
+  --gutter: clamp(20px, 5vw, 48px);
+  --secao: clamp(96px, 12vw, 160px);
+  --saida: cubic-bezier(.16, 1, .3, 1);
+
+  /* Escala tipográfica por papel */
+  --t-meta: .875rem;
+  --t-rotulo: .9375rem;
+  --t-corpo: 1.0625rem;
+  --t-abertura: 1.1875rem;
+  --t-titulo: 1.25rem;
+  --t-numero: clamp(2rem, 3.2vw, 2.6rem);
+  --t-secao: clamp(2.1rem, 3.8vw, 3.4rem);
+  --t-display: clamp(3.1rem, 5.8vw, 5.75rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  scrollbar-color: var(--roxo) var(--lilas);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: var(--fonte);
+  font-size: var(--t-corpo);
+  line-height: 1.6;
+  color: var(--texto);
+  background: var(--branco);
+  -webkit-font-smoothing: antialiased;
+  caret-color: var(--roxo);
+}
+
+::selection { background: var(--lilas-2); color: var(--tinta); }
+
+img { max-width: 100%; height: auto; display: block; }
+[hidden] { display: none !important; }
+a { color: inherit; text-underline-offset: .22em; text-decoration-thickness: 1.5px; }
+a, button { -webkit-tap-highlight-color: transparent; }
+h1, h2, h3, h4 { margin: 0; color: var(--tinta); text-wrap: balance; }
+p, li, dd, dt { margin: 0; text-wrap: pretty; }
+button { font: inherit; }
+em { font-style: normal; color: var(--roxo); }
+
+:focus-visible { outline: 2px solid var(--roxo); outline-offset: 3px; border-radius: 6px; }
+
+.container { width: 100%; max-width: calc(var(--container) + 2 * var(--gutter)); margin: 0 auto; padding: 0 var(--gutter); }
+
+.visualmente-oculto {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.pular {
+  position: absolute;
+  left: 16px; top: -60px;
+  z-index: 100;
+  background: var(--roxo);
+  color: var(--branco);
+  padding: 12px 18px;
+  border-radius: var(--pilula);
+  font-weight: 600;
+  text-decoration: none;
+}
+.pular:focus { top: 12px; }
+
+.icone { width: 20px; height: 20px; flex-shrink: 0; }
+.icone-maps { color: var(--maps); }
+.icone-waze { color: var(--waze); }
+
+/* ---------- Botões: pílulas leves ---------- */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 24px;
+  border: 1px solid transparent;
+  border-radius: var(--pilula);
+  font-size: var(--t-rotulo);
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  letter-spacing: -.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .3s var(--saida), background-color .25s, color .25s, border-color .25s, box-shadow .3s var(--saida);
+}
+.botao:hover { transform: translateY(-2px); }
+.botao:active { transform: translateY(0) scale(.98); transition-duration: .08s; }
+.botao-roxo { background: var(--roxo); color: var(--branco); }
+.botao-roxo:hover { background: var(--roxo-forte); box-shadow: 0 16px 30px -16px rgba(106, 0, 156, .6); }
+.botao-linha { background: rgba(255, 255, 255, .86); color: var(--tinta); border-color: var(--lilas-borda); }
+.botao-linha:hover { border-color: var(--roxo); color: var(--roxo); }
+.botao-branco { background: var(--branco); color: var(--roxo); }
+.botao-branco:hover { background: var(--lilas); box-shadow: 0 16px 30px -16px rgba(40, 0, 70, .45); }
+.botao-pequeno { min-height: 42px; padding: 0 18px; font-size: .875rem; }
+.botao-grande { min-height: 60px; padding: 0 32px; font-size: 1.0625rem; }
+.seta { font-size: 1.15em; font-weight: 400; transition: transform .3s var(--saida); }
+.botao:hover .seta { transform: translate(3px, 3px); }
+
+.link-roxo {
+  display: inline-flex;
+  gap: 8px;
+  margin-top: 26px;
+  padding: 8px 0;
+  color: var(--roxo);
+  font-weight: 600;
+  text-decoration: underline 1.5px transparent;
+  transition: text-decoration-color .2s;
+}
+.link-roxo span { transition: transform .3s var(--saida); }
+.link-roxo:hover { text-decoration-color: currentColor; }
+.link-roxo:hover span { transform: translateX(4px); }
+.botao .icone { transition: transform .4s var(--saida); }
+@media (hover: hover) { .botao:hover .icone { transform: rotate(-10deg) scale(1.08); } }
+
+/* ---------- Cabeçalho: uma cápsula de vidro que flutua sobre a página ---------- */
+.topo {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  padding: 12px var(--gutter) 0;
+  pointer-events: none;
+}
+.topo-conteudo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1240px;
+  height: 64px;
+  margin: 0 auto;
+  padding: 0 8px 0 20px;
+  border: 1px solid rgba(230, 220, 238, .6);
+  border-radius: var(--pilula);
+  background: rgba(255, 255, 255, .55);
+  -webkit-backdrop-filter: saturate(1.6) blur(16px);
+  backdrop-filter: saturate(1.6) blur(16px);
+  box-shadow: 0 10px 40px -28px rgba(70, 0, 110, .3);
+  pointer-events: auto;
+  transition: max-width .7s var(--saida), height .5s var(--saida), background-color .4s, border-color .4s, box-shadow .5s var(--saida);
+}
+/* Ao rolar, a cápsula se recolhe e fica mais firme */
+.topo.rolado .topo-conteudo {
+  max-width: 1060px;
+  height: 58px;
+  border-color: var(--lilas-borda);
+  background: rgba(255, 255, 255, .84);
+  box-shadow: 0 18px 50px -26px rgba(70, 0, 110, .38);
+}
+/* Fio roxo: quanto da página já foi lido */
+.topo-progresso {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--roxo), #b46ee0);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  transition: opacity .4s;
+  pointer-events: none;
+}
+.topo.rolado .topo-progresso { opacity: 1; }
+
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--roxo);
+  text-decoration: none;
+}
+.marca span { color: var(--tinta); font-size: 1rem; font-weight: 750; letter-spacing: -.04em; }
+.marca-simbolo { width: 30px; height: 30px; transition: transform .6s var(--saida); }
+.marca:hover .marca-simbolo { transform: translateY(-2px) scale(1.06); }
+
+.nav { display: flex; align-items: center; gap: 12px; }
+.nav-links { position: relative; display: flex; align-items: center; gap: 2px; }
+.nav-links a {
+  position: relative;
+  z-index: 1;
+  padding: 9px 16px;
+  border-radius: var(--pilula);
+  color: var(--texto-suave);
+  font-size: .9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color .25s;
+}
+.nav-links a:hover, .nav-links a[aria-current] { color: var(--roxo); }
+.nav-links a:focus-visible { outline-offset: 0; border-radius: var(--pilula); }
+/* Pílula lilás que desliza até o link sob o mouse (ou o da seção atual) */
+.nav-indicador {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  border-radius: var(--pilula);
+  background: var(--lilas);
+  opacity: 0;
+  transition: transform .5s var(--saida), width .5s var(--saida), opacity .3s;
+}
+.nav-indicador.visivel { opacity: 1; }
+
+/* Botão com a seta num círculo, que aponta para cima ao passar o mouse */
+.botao-cta { min-height: 46px; gap: 12px; padding: 0 6px 0 20px; font-size: .9375rem; }
+.botao-seta {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--branco);
+  color: var(--roxo);
+}
+.botao-seta svg { width: 15px; height: 15px; transition: transform .4s var(--saida); }
+.botao-cta:hover .botao-seta svg { transform: rotate(-45deg); }
+
+.menu-botao {
+  display: none;
+  width: 44px; height: 44px;
+  padding: 13px 12px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--lilas);
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+.menu-botao span { display: block; height: 2px; border-radius: 2px; background: var(--roxo); transition: transform .3s var(--saida); }
+.menu-botao[aria-expanded="true"] span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+.menu-botao[aria-expanded="true"] span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
+/* ---------- Abertura: as partículas formam o M ---------- */
+.abertura {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: max(700px, 100svh);
+  background: var(--branco);
+}
+.abertura canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.abertura-texto {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: max(700px, 100svh);
+  width: min(46%, 600px);
+  margin-left: max(clamp(24px, 7.5vw, 140px), calc((100% - var(--container)) / 2));
+  padding: 110px 0 90px;
+  pointer-events: none;
+}
+.abertura-texto a { pointer-events: auto; }
+/* Véu branco suave atrás do texto: a poeira roxa fica densa em volta,
+   mas some perto das letras para o título e o subtítulo lerem limpos */
+.abertura-texto::before {
+  content: "";
+  position: absolute;
+  inset: 12% -14% 8% -12%;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, .94) 55%, rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+.abertura h1 {
+  font-size: var(--t-display);
+  font-weight: 640;
+  line-height: 1.02;
+  letter-spacing: -.04em;
+}
+.abertura-sub {
+  margin-top: 26px;
+  max-width: 30rem;
+  color: var(--texto-suave);
+  font-size: var(--t-abertura);
+  line-height: 1.55;
+}
+.abertura-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 36px; }
+.palco-particulas {
+  position: absolute;
+  z-index: 2;
+  top: 8%; right: 2%;
+  width: 52%; height: 84%;
+  cursor: crosshair;
+  touch-action: pan-y;
+  outline-offset: -6px;
+}
+.dica {
+  position: absolute;
+  z-index: 1;
+  right: 5%; bottom: 5%;
+  width: 44%;
+  color: var(--texto-suave);
+  font-size: var(--t-meta);
+  text-align: center;
+  pointer-events: none;
+}
+.dica-toque { display: none; }
+.descer {
+  position: absolute;
+  z-index: 3;
+  left: max(clamp(24px, 7.5vw, 140px), calc((100% - var(--container)) / 2)); bottom: 28px;
+  display: grid;
+  place-items: center;
+  width: 40px; height: 40px;
+  border: 1px solid var(--lilas-borda);
+  border-radius: 50%;
+  color: var(--roxo);
+  text-decoration: none;
+  transition: transform .3s var(--saida), background-color .25s;
+}
+.descer:hover { transform: translateY(4px); background: var(--lilas-fundo); }
+
+/* ---------- Clientes: faixa roxa em movimento contínuo ---------- */
+.marcas { position: relative; overflow: hidden; padding: 22px 0 26px; background: var(--roxo-faixa); }
+.marcas-titulo {
+  padding: 0 clamp(20px, 5vw, 72px);
+  margin-bottom: 14px;
+  color: rgba(255, 255, 255, .82);
+  font-size: .8125rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.marcas-janela { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #fff 6%, #fff 94%, transparent); }
+.marcas-trilho { display: flex; width: max-content; animation: marcas-loop 50s linear infinite; }
+.marcas-janela:hover .marcas-trilho { animation-play-state: paused; }
+.marcas-grupo {
+  --distancia: clamp(64px, 8vw, 128px);
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--distancia);
+  padding: 0 var(--distancia) 0 0;
+  margin: 0;
+  list-style: none;
+}
+.marcas-grupo li { height: 84px; flex: none; }
+.marcas-grupo img { width: auto; height: 100%; }
+@keyframes marcas-loop { to { transform: translateX(-50%); } }
+
+/* ---------- Cardápios: hexágonos flutuam em volta do celular ---------- */
+.vitrine { position: relative; isolation: isolate; overflow: hidden; background: var(--branco); }
+.vitrine-grade {
+  width: min(100%, 1640px);
+  min-height: max(760px, 100svh);
+  margin: 0 auto;
+  padding: 72px clamp(24px, 5vw, 88px);
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(320px, 500px) minmax(260px, 1fr);
+  column-gap: clamp(18px, 2.5vw, 45px);
+  align-items: center;
+}
+.vitrine-texto { grid-column: 1; grid-row: 1; z-index: 2; width: min(100%, 420px); justify-self: end; }
+.vitrine h2 { font-size: var(--t-secao); font-weight: 620; line-height: 1.08; letter-spacing: -.04em; }
+.negocio { color: var(--roxo); }
+.negocio.trocando, .fechamento-negocio.trocando { animation: palavra-entra .5s var(--saida) both; }
+.vitrine-sub { margin-top: 20px; max-width: 22rem; color: var(--texto-suave); }
+
+.hexagonos { grid-column: 3; grid-row: 1; position: relative; z-index: 2; justify-self: start; width: min(100%, 290px); height: 520px; }
+.hex {
+  position: absolute;
+  width: var(--tam, 78px);
+  aspect-ratio: 1 / 1.1;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.hex:nth-child(1) { --tam: 78px; --dur: 5.8s; --atraso: -1.2s; left: 6%; top: 3%; }
+.hex:nth-child(2) { --tam: 88px; --dur: 6.6s; --atraso: -3.4s; left: 56%; top: 18%; }
+.hex:nth-child(3) { --tam: 74px; --dur: 5.4s; --atraso: -2.1s; left: 12%; top: 39%; }
+.hex:nth-child(4) { --tam: 82px; --dur: 6.2s; --atraso: -4.1s; left: 59%; top: 59%; }
+.hex:nth-child(5) { --tam: 84px; --dur: 5.9s; --atraso: -.8s; left: 7%; top: 79%; }
+.hex span {
+  display: grid;
+  place-items: center;
+  width: 100%; height: 100%;
+  padding: 0 6px;
+  background: var(--lilas);
+  color: var(--roxo);
+  clip-path: polygon(50% 0, 94% 25%, 94% 75%, 50% 100%, 6% 75%, 6% 25%);
+  font-size: .8125rem;
+  font-weight: 650;
+  line-height: 1;
+  animation: flutuar var(--dur) ease-in-out var(--atraso) infinite;
+  transition: background-color .3s, color .3s, scale .25s var(--saida);
+}
+.hex:hover span { background: var(--lilas-2); }
+.hex:active span { scale: .94; }
+.hex[aria-pressed="true"] span { background: var(--roxo); color: var(--branco); }
+.hex:focus-visible { outline: none; }
+.hex:focus-visible span { box-shadow: inset 0 0 0 3px var(--roxo); }
+.hex:focus-visible[aria-pressed="true"] span { box-shadow: inset 0 0 0 3px var(--lilas-2); }
+.faisca {
+  position: absolute;
+  z-index: 3;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--roxo);
+  pointer-events: none;
+  animation: faisca .64s ease-out forwards;
+}
+
+.cena { grid-column: 2; grid-row: 1; position: relative; isolation: isolate; z-index: 1; display: grid; place-items: center; min-width: 0; width: 100%; }
+.orbita { position: absolute; z-index: -1; width: 111%; aspect-ratio: 1; border: 2px solid rgba(128, 0, 187, .5); border-radius: 50%; }
+.orbita-1 { transform: rotate(-20deg) scaleY(.83); animation: orbita-1 16s linear infinite; }
+.orbita-2 { width: 132%; opacity: .8; transform: rotate(24deg) scaleY(.69); animation: orbita-2 21s linear infinite; }
+/* Um "satélite" em cada órbita: deixa o giro visível */
+.orbita::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: var(--roxo);
+  box-shadow: 0 0 0 5px rgba(128, 0, 187, .14);
+}
+.orbita-2::before { top: auto; bottom: -6px; width: 9px; height: 9px; margin-left: -4.5px; background: #a64fd6; }
+.celular {
+  position: relative;
+  height: min(80svh, 800px);
+  aspect-ratio: 640 / 1302;
+  max-width: 100%;
+  animation: pairar 6s ease-in-out infinite;
+}
+.celular-tela {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 34px 38px rgba(70, 0, 110, .16));
+}
+.celular-tela.entrando { z-index: 2; }
+
+.vitrine.revelada .vitrine-texto { animation: subir .8s var(--saida) both; }
+.vitrine.revelada .cena { animation: subir 1s .1s var(--saida) both; }
+.vitrine.revelada .hexagonos { animation: subir .8s .16s var(--saida) both; }
+
+/* ---------- Seções de conteúdo ---------- */
+.secao { padding: var(--secao) 0; }
+.secao-lilas { background: var(--lilas-fundo); }
+.titulo-secao { max-width: 20ch; font-size: var(--t-secao); font-weight: 620; line-height: 1.08; letter-spacing: -.04em; }
+.cabecalho { max-width: 44rem; margin-bottom: clamp(56px, 7vw, 88px); }
+.cabecalho p { margin-top: 20px; max-width: 34rem; color: var(--texto-suave); font-size: var(--t-abertura); }
+
+/* Diferenciais: quatro ideias soltas no branco, cada uma com o hexágono da marca */
+.diferenciais {
+  list-style: none;
+  padding: 0;
+  margin: clamp(56px, 7vw, 88px) 0 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 48px clamp(28px, 3.5vw, 56px);
+}
+.hex-marca { width: 34px; height: 39px; fill: var(--lilas); stroke: var(--roxo); stroke-width: 5; stroke-linejoin: round; }
+.diferenciais h3 { margin-top: 22px; font-size: var(--t-titulo); font-weight: 620; line-height: 1.25; letter-spacing: -.02em; }
+.diferenciais p { margin-top: 10px; color: var(--texto-suave); }
+
+/* Números reais: sempre roxos e tabulares */
+.numero { color: var(--roxo); font-weight: 620; letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
+
+/* ---------- Recursos: "Sem o Menu10 × Com o Menu10" — a dor e a solução, par a par ---------- */
+/* Cada par é um <li> com a dor e a solução. No computador e no tablet, os pares se abrem
+   em duas colunas (display: contents) sobre dois painéis de fundo; cada dor fica na linha
+   da sua solução (--r). No celular, cada par vira um cartão. Ao aparecer, a dor é riscada
+   (.riscado, main.js) e a solução se revela. */
+.comparar {
+  --dentro: clamp(22px, 3vw, 36px);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto repeat(6, auto);
+  column-gap: clamp(20px, 3vw, 40px);
+}
+.comparar-fundo { grid-row: 1 / -1; border-radius: 24px; }
+.comparar-fundo-sem { grid-column: 1; border: 1px solid var(--lilas-borda); background: var(--branco); }
+.comparar-fundo-com { grid-column: 2; background: var(--roxo); box-shadow: 0 40px 70px -40px rgba(106, 0, 156, .7); }
+.comparar-titulo {
+  position: relative;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: var(--dentro) var(--dentro) 10px;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 650;
+  letter-spacing: -.025em;
+}
+.comparar-titulo svg { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; }
+.comparar-titulo-sem { grid-column: 1; color: var(--texto-suave); }
+.comparar-titulo-sem svg { padding: 7px; background: var(--lilas-fundo); }
+.comparar-titulo-com { grid-column: 2; color: var(--branco); }
+.comparar-titulo-com svg { padding: 4px; background: var(--branco); color: var(--roxo); }
+
+.comparar-lista, .par { display: contents; }
+.par-sem, .par-com {
+  position: relative;
+  grid-row: var(--r);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 var(--dentro);
+  padding: 14px 0;
+  font-size: var(--t-corpo);
+  line-height: 1.4;
+}
+.par-sem { grid-column: 1; color: var(--texto-suave); }
+.par-com { grid-column: 2; color: var(--branco); font-weight: 550; }
+.par + .par .par-sem { border-top: 1px solid var(--lilas-borda); }
+.par + .par .par-com { border-top: 1px solid rgba(255, 255, 255, .16); }
+.par:last-child .par-sem, .par:last-child .par-com { margin-bottom: calc(var(--dentro) - 6px); }
+.par-sem svg, .par-com svg { flex-shrink: 0; width: 28px; height: 28px; padding: 7px; border-radius: 50%; }
+.par-sem svg { background: var(--lilas-fundo); color: #9a8fa3; }
+.par-com svg { background: rgba(255, 255, 255, .16); color: var(--branco); }
+
+/* O risco: uma linha fina atravessa a dor, da esquerda para a direita */
+.risco {
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 58% / 0 1.5px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size .9s cubic-bezier(.65, 0, .35, 1) .45s, color .6s .45s;
+}
+.par.riscado .risco { background-size: 100% 1.5px; color: #a79db0; }
+
+/* Seta no meio, ligando um lado ao outro */
+.comparar-seta {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  translate: -50% -50%;
+  border: 4px solid var(--lilas-fundo);
+  border-radius: 50%;
+  background: var(--branco);
+  color: var(--roxo);
+  box-shadow: 0 10px 24px -12px rgba(70, 0, 110, .45);
+}
+.comparar-seta svg { width: 18px; height: 18px; }
+
+/* ---------- Relatórios: as telas reais do sistema numa moldura lilás ---------- */
+.gestao-topo { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 28px 48px; }
+.gestao-topo p { margin-top: 20px; max-width: 30rem; color: var(--texto-suave); font-size: var(--t-abertura); }
+.pilulas { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.pilulas li {
+  padding: 8px 14px;
+  border: 1px solid var(--lilas-borda);
+  border-radius: var(--pilula);
+  background: var(--lilas-fundo);
+  color: var(--tinta);
+  font-size: .875rem;
+  font-weight: 550;
+}
+
+.painel {
+  margin-top: clamp(40px, 5vw, 64px);
+  padding: clamp(10px, 1.4vw, 18px);
+  border: 1px solid var(--lilas-borda);
+  border-radius: 24px;
+  background: var(--lilas-fundo);
+  box-shadow: 0 50px 90px -70px rgba(70, 0, 110, .5);
+}
+.painel-barra { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 2px 4px 14px 8px; }
+.painel-marca { display: inline-flex; align-items: center; gap: 10px; color: var(--tinta); font-size: .9375rem; font-weight: 650; }
+.painel-marca svg { width: 24px; height: 24px; color: var(--roxo); }
+.painel-fonte { padding: 14px 8px 2px; color: var(--texto-suave); font-size: .8125rem; }
+
+.abas { position: relative; isolation: isolate; display: inline-flex; padding: 3px; border: 1px solid var(--lilas-borda); border-radius: var(--pilula); background: var(--branco); }
+/* A pílula roxa desliza até a aba escolhida (--x e --w vêm do relatorio.js) */
+.abas-indicador { position: absolute; z-index: -1; top: 3px; bottom: 3px; left: 0; width: var(--w, 0); border-radius: var(--pilula); background: var(--roxo); transform: translateX(var(--x, 0)); transition: transform .45s var(--saida), width .45s var(--saida); }
+.abas button {
+  min-height: 36px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--pilula);
+  background: transparent;
+  color: var(--texto);
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color .3s, scale .12s;
+}
+.abas button[aria-selected="true"] { color: var(--branco); }
+.abas:not(:has(.abas-indicador[style])) button[aria-selected="true"] { background: var(--roxo); }  /* sem JS: fundo direto na aba */
+.abas button:not([aria-selected="true"]):hover { color: var(--roxo); }
+.abas button:active { scale: .95; }
+
+/* A tela: o print como está no sistema, com borda fina e um "Ampliar" que aparece no hover */
+.tela { animation: tela-entra .5s var(--saida); }
+@keyframes tela-entra { from { opacity: 0; filter: blur(6px); transform: scale(.985); } }
+.tela-ampliar {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--lilas-borda);
+  border-radius: 14px;
+  background: var(--branco);
+  cursor: zoom-in;
+}
+.tela-ampliar img { width: 100%; transition: transform .8s var(--saida); }
+.tela-ampliar { transition: transform .3s var(--saida); }
+.tela-ampliar:active { transform: scale(.992); transition-duration: .1s; }
+.tela-lupa {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px 8px 10px;
+  border-radius: var(--pilula);
+  background: var(--roxo);
+  color: var(--branco);
+  font-size: .8125rem;
+  font-weight: 600;
+  box-shadow: 0 12px 24px -12px rgba(106, 0, 156, .7);
+  transition: transform .4s var(--saida), opacity .3s;
+}
+.tela-lupa svg { width: 16px; height: 16px; }
+@media (hover: hover) {
+  .tela-lupa { opacity: 0; transform: translateY(6px); }
+  .tela-ampliar:hover .tela-lupa, .tela-ampliar:focus-visible .tela-lupa { opacity: 1; transform: none; }
+  .tela-ampliar:hover img { transform: scale(1.015); }
+}
+
+/* Tela ampliada: ocupa a janela; no celular, arrasta-se para os lados para ler */
+.zoom {
+  width: min(1640px, 100vw - 32px);
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background: var(--branco);
+  box-shadow: 0 40px 80px -30px rgba(40, 0, 70, .5);
+  overflow: hidden;
+}
+.zoom::backdrop { background: rgba(42, 26, 58, .55); backdrop-filter: blur(4px); }
+.zoom[open] { animation: zoom-entrar .35s var(--saida); }
+.zoom[open]::backdrop { animation: esmaecer .35s ease-out; }
+.zoom.fechando { animation: zoom-sair .2s ease-in forwards; }
+.zoom.fechando::backdrop { animation: esmaecer-sair .2s ease-in forwards; }
+.zoom-rolagem { max-height: calc(100dvh - 32px); overflow: auto; overscroll-behavior: contain; }
+.zoom-rolagem img { width: 100%; min-width: 900px; }
+.zoom-fechar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--roxo);
+  color: var(--branco);
+  cursor: pointer;
+  box-shadow: 0 10px 20px -10px rgba(106, 0, 156, .7);
+}
+.zoom-fechar svg { width: 20px; height: 20px; }
+@keyframes zoom-entrar { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+@keyframes zoom-sair { to { opacity: 0; transform: translateY(8px) scale(.985); } }
+@keyframes esmaecer-sair { to { opacity: 0; } }
+
+.painel-mais { margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.painel-mais > p { color: var(--texto-suave); font-size: .875rem; }
+
+/* Suporte */
+.suporte {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 48px clamp(40px, 6vw, 88px);
+  align-items: stretch;
+}
+.suporte-texto > p { margin-top: 20px; max-width: 32rem; color: var(--texto-suave); font-size: var(--t-abertura); }
+.status {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 32px;
+  padding: 16px 22px 16px 18px;
+  border: 1px solid var(--lilas-borda);
+  border-radius: var(--raio);
+  background: var(--branco);
+}
+.status-luz { flex-shrink: 0; width: 10px; height: 10px; margin-top: .55em; border-radius: 50%; background: var(--roxo); }
+.status.fechado .status-luz { background: transparent; box-shadow: inset 0 0 0 2px var(--roxo); }
+/* Aberto: um anel roxo sai da luz, como sinal de "ao vivo". Pausa fora da tela (main.js). */
+.status:not(.fechado) .status-luz { position: relative; }
+.status:not(.fechado) .status-luz::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--roxo); animation: pulso 2.4s cubic-bezier(.16, 1, .3, 1) infinite paused; }
+.status.na-tela:not(.fechado) .status-luz::after { animation-play-state: running; }
+@keyframes pulso { 0% { opacity: .45; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(2.8); } }
+.status-texto { color: var(--tinta); font-size: 1.125rem; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; }
+.status-detalhe { margin-top: 2px; color: var(--texto-suave); font-size: .8125rem; }
+.sem-quebra { white-space: nowrap; }
+
+.dados { margin: 32px 0 0; display: grid; gap: 20px; }
+.dados div { display: grid; gap: 4px; }
+.dados dt { color: var(--texto-suave); font-size: var(--t-meta); font-weight: 500; }
+.dados dd { color: var(--tinta); font-size: 1.3125rem; font-weight: 600; line-height: 1.35; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.dado-link { text-decoration: underline 1.5px var(--lilas-2); transition: text-decoration-color .2s, color .2s; }
+.dado-link:hover { color: var(--roxo); text-decoration-color: currentColor; }
+.copiar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 14px;
+  padding: 8px 0;
+  border: 0;
+  background: none;
+  color: var(--roxo);
+  font-size: .875rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-decoration: underline 1.5px transparent;
+  text-underline-offset: .22em;
+  vertical-align: .12em;
+  cursor: pointer;
+  transition: text-decoration-color .2s;
+}
+.copiar:hover { text-decoration-color: currentColor; }
+.copiar svg { display: none; width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.copiar polyline { stroke-dasharray: 1; }
+.copiar.copiado svg { display: block; }
+.copiar.copiado polyline { animation: tracar .35s var(--saida) both; }
+.rotas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+.mapa {
+  position: relative;
+  min-height: 440px;
+  overflow: hidden;
+  border: 1px solid var(--lilas-borda);
+  border-radius: var(--raio);
+  background: var(--lilas);
+}
+.mapa-aviso { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; color: var(--texto-suave); text-align: center; }
+.mapa iframe { position: relative; display: block; width: 100%; height: 100%; min-height: 440px; border: 0; }
+
+/* ---------- Fechamento: roxo, com o campo de fluxo girando em volta do mouse ---------- */
+.fechamento {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(110px, 14vw, 180px) 0;
+  background: var(--roxo-faixa);
+  color: var(--branco);
+  text-align: center;
+}
+.fluxo { position: absolute; inset: 0; z-index: -2; display: block; width: 100%; height: 100%; pointer-events: none; }
+/* Véu: escurece um pouco o centro (atrás do texto) e funde as bordas com o roxo das seções vizinhas. */
+.fluxo-veu {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 42% 46% at 50% 50%, rgba(119, 0, 169, .72), rgba(119, 0, 169, 0) 100%),
+    linear-gradient(to bottom, var(--roxo-faixa), rgba(119, 0, 169, 0) 18%, rgba(119, 0, 169, 0) 82%, var(--roxo-faixa));
+}
+.fechamento-conteudo { position: relative; display: flex; flex-direction: column; align-items: center; }
+.fechamento h2 {
+  max-width: 16ch;
+  color: var(--branco);
+  font-size: clamp(2.3rem, 5vw, 4.25rem);
+  font-weight: 630;
+  line-height: 1.06;
+  letter-spacing: -.04em;
+}
+.fechamento p { margin: 22px 0 38px; max-width: 30rem; color: var(--lilas-no-roxo); font-size: var(--t-abertura); }
+
+/* ---------- Rodapé ---------- */
+.rodape { padding: 72px 0 0; border-top: 1px solid var(--lilas-borda); background: var(--branco); color: var(--texto-suave); }
+.rodape-grade { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; padding-bottom: 48px; }
+.rodape-marca { display: flex; gap: 14px; align-items: flex-start; color: var(--roxo); }
+.rodape-marca .marca-simbolo { width: 38px; height: 38px; }
+.rodape-marca p { color: var(--texto-suave); }
+.rodape-marca strong { color: var(--tinta); font-size: 1.0625rem; font-weight: 750; letter-spacing: -.04em; }
+.rodape-titulo { margin-bottom: 10px; color: var(--tinta); font-size: var(--t-rotulo); font-weight: 600; }
+.rodape-grade a, .rodape-grade p { display: block; padding: 5px 0; text-decoration: none; }
+.rodape-grade a { width: fit-content; background: linear-gradient(currentColor, currentColor) no-repeat 0 calc(100% - 3px) / 0 1px; transition: color .2s, background-size .4s var(--saida); }
+.rodape-grade a:hover, .rodape-grade a:focus-visible { color: var(--roxo); background-size: 100% 1px; }
+.rodape-base { padding-top: 22px; padding-bottom: 100px; border-top: 1px solid var(--lilas-borda); font-size: .8125rem; }
+
+/* ---------- WhatsApp flutuante ---------- */
+.whats-flutuante {
+  position: fixed;
+  right: 20px; bottom: 20px;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  background: var(--roxo);
+  color: var(--branco);
+  /* aro branco fino: some no fundo branco, separa o botão do fundo roxo do fechamento */
+  box-shadow: 0 0 0 2.5px rgba(255, 255, 255, .92), 0 16px 30px -12px rgba(106, 0, 156, .55);
+  transition: transform .3s var(--saida), background-color .25s;
+}
+.whats-flutuante:hover { transform: translateY(-3px); background: var(--roxo-forte); }
+.whats-flutuante:active { transform: scale(.94); transition-duration: .08s; }
+.whats-flutuante svg { width: 28px; height: 28px; }
+/* Bolinha "tem gente atendendo": só aparece com o atendimento aberto (main.js, mesmo relógio do Suporte) */
+.whats-luz {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 13px;
+  height: 13px;
+  border: 2.5px solid var(--roxo);
+  border-radius: 50%;
+  background: var(--branco);
+  transform: scale(0);
+  transition: transform .4s var(--saida), border-color .25s;
+}
+.whats-flutuante.aberto .whats-luz { transform: scale(1); }
+.whats-flutuante:hover .whats-luz { border-color: var(--roxo-forte); }
+/* Etiqueta ao lado: "Aberto agora · até 17h30" ou "Fechado · abre amanhã às 8h" */
+.whats-dica {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  padding: 8px 14px;
+  border: 1px solid var(--lilas-borda);
+  border-radius: var(--pilula);
+  background: var(--branco);
+  color: var(--tinta);
+  font-size: .8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 14px 30px -18px rgba(70, 0, 110, .45);
+  opacity: 0;
+  transform: translate(8px, -50%);
+  pointer-events: none;
+  transition: opacity .2s, transform .35s var(--saida);
+}
+.whats-dica:empty { display: none; }
+.whats-flutuante:focus-visible .whats-dica, .whats-flutuante.mostrar .whats-dica { opacity: 1; transform: translate(0, -50%); }
+@media (hover: hover) { .whats-flutuante:hover .whats-dica { opacity: 1; transform: translate(0, -50%); } }
+
+/* ---------- Movimento ---------- */
+@keyframes flutuar { 0%, 100% { transform: translateY(2px) rotate(-3deg); } 50% { transform: translateY(-12px) rotate(3deg); } }
+@keyframes faisca { from { opacity: 1; transform: translate(-50%, -50%) scale(1); } to { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(.25); } }
+/* O celular flutua: sobe e desce com um leve balanço */
+
+@keyframes pairar {
+  0%, 100% { transform: translateY(0) rotate(-1.4deg); }
+  50% { transform: translateY(-24px) rotate(1.4deg); }
+}
+@keyframes orbita-1 { to { transform: rotate(340deg) scaleY(.83); } }
+@keyframes orbita-2 { to { transform: rotate(-336deg) scaleY(.69); } }
+@keyframes subir { from { opacity: 0; transform: translateY(32px); } }
+@keyframes palavra-entra { from { opacity: 0; filter: blur(7px); } }
+@keyframes tracar { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
+
+/* ============================================================
+   Movimento ao rolar (inspirado na home da Nuvemshop)
+   ============================================================ */
+/* Surgir: sobe 24px e aparece; os que entram juntos vêm em sequência (--atraso, movimento.js) */
+.js [data-surgir] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.1s cubic-bezier(.33, 1, .68, 1) var(--atraso, 0ms), transform 1.4s cubic-bezier(.22, 1, .36, 1) var(--atraso, 0ms);
+}
+/* A tela do relatório entra levemente inclinada e se endireita */
+.js [data-surgir="tela"] {
+  transform: perspective(1800px) translateY(40px) rotateX(6deg) scale(.97);
+  transform-origin: 50% 0;
+  transition-duration: 1.2s, 1.8s;
+}
+.js [data-surgir].surgiu { opacity: 1; transform: none; }
+
+/* Abertura: o título sobe linha por linha de dentro de uma máscara, depois o resto */
+.abertura h1 .linha { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
+.abertura h1 .linha > span { display: inline-block; animation: linha-sobe 1.4s cubic-bezier(.22, 1, .36, 1) .15s both; }
+.abertura h1 .linha + .linha > span { animation-delay: .3s; }
+.abertura-sub { animation: surgir-leve 1.2s cubic-bezier(.22, 1, .36, 1) .6s both; }
+.abertura-acoes { animation: surgir-leve 1.2s cubic-bezier(.22, 1, .36, 1) .78s both; }
+.dica, .descer { animation: esmaecer 1.4s ease-out 1.2s both; }
+.topo-conteudo { animation: topo-desce 1s cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes linha-sobe { from { transform: translateY(108%); } }
+@keyframes topo-desce { from { opacity: 0; transform: translateY(-10px); } }
+@keyframes surgir-leve { from { opacity: 0; transform: translateY(16px); } }
+
+/* Seções lilás e o fechamento entram como cartas: cantos arredondados que se abrem
+   até a largura toda enquanto a seção sobe (só onde o navegador liga animação à rolagem) */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .secao-lilas, .fechamento {
+      animation: secao-carta linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+  }
+}
+@keyframes secao-carta {
+  from { clip-path: inset(0 1.5% round 32px); }
+  to { clip-path: inset(0 0 round 0); }
+}
+
+/* ============================================================
+   Responsivo
+   ============================================================ */
+@media (max-width: 1080px) {
+  .vitrine-grade { grid-template-columns: minmax(250px, .9fr) minmax(320px, 1.1fr); grid-template-rows: auto auto; column-gap: 0; }
+  .vitrine-texto { grid-column: 1; grid-row: 1; align-self: end; justify-self: start; }
+  .hexagonos { grid-column: 1; grid-row: 2; justify-self: center; align-self: start; width: min(100%, 270px); height: 220px; margin-top: 16px; }
+  .hex:nth-child(1) { left: 1%; top: 0; }
+  .hex:nth-child(2) { left: 34%; top: 14%; }
+  .hex:nth-child(3) { left: 66%; top: 0; }
+  .hex:nth-child(4) { left: 17%; top: 56%; }
+  .hex:nth-child(5) { left: 56%; top: 55%; }
+  .cena { grid-column: 2; grid-row: 1 / span 2; }
+  .celular { height: min(76svh, 740px); }
+  .diferenciais { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  /* Tablet: as duas colunas continuam lado a lado, mais compactas */
+  .comparar { --dentro: 18px; column-gap: 14px; }
+  .par-sem, .par-com { gap: 10px; font-size: .9375rem; }
+  .par-sem svg, .par-com svg { width: 24px; height: 24px; padding: 6px; }
+  .comparar-seta { width: 38px; height: 38px; }
+  .menu-botao { display: flex; }
+  .topo { padding: 10px 12px 0; }
+  .topo-conteudo, .topo.rolado .topo-conteudo { height: 58px; padding: 0 7px 0 16px; }
+  .topo:has(.nav.aberto) .topo-conteudo { background: var(--branco); border-color: var(--lilas-borda); }
+  /* No celular, o menu abre como um cartão flutuante logo abaixo da cápsula */
+  .nav {
+    position: absolute;
+    top: calc(100% + 8px); left: 0; right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid var(--lilas-borda);
+    border-radius: 24px;
+    background: var(--branco);
+    box-shadow: 0 30px 60px -30px rgba(70, 0, 110, .4);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px) scale(.98);
+    transform-origin: top;
+    transition: opacity .2s, transform .3s var(--saida), visibility 0s .3s;
+  }
+  .nav.aberto { visibility: visible; opacity: 1; transform: none; transition: opacity .2s, transform .35s var(--saida); }
+  .nav-links a, .nav .botao-cta { opacity: 0; translate: 0 -6px; transition: opacity .2s, translate .35s var(--saida); }
+  .nav.aberto .nav-links a, .nav.aberto .botao-cta { opacity: 1; translate: none; }
+  .nav.aberto .nav-links a:nth-child(3) { transition-delay: 35ms; }
+  .nav.aberto .nav-links a:nth-child(4) { transition-delay: 70ms; }
+  .nav.aberto .nav-links a:nth-child(5) { transition-delay: 105ms; }
+  .nav.aberto .botao-cta { transition-delay: 140ms; }
+  .nav-links { flex-direction: column; align-items: stretch; gap: 2px; }
+  .nav-indicador { display: none; }
+  .nav-links a { padding: 14px 16px; border-radius: 16px; color: var(--tinta); font-size: 1.0625rem; }
+  .nav-links a[aria-current] { background: var(--lilas); }
+  .nav .botao-cta { justify-content: space-between; min-height: 56px; padding: 0 8px 0 20px; font-size: var(--t-rotulo); }
+  .botao-seta { width: 40px; height: 40px; }
+
+  .suporte { grid-template-columns: 1fr; }
+  .mapa, .mapa iframe { min-height: 340px; }
+  .rodape-grade { grid-template-columns: 1fr 1fr; }
+  .rodape-marca { grid-column: 1 / -1; }
+}
+
+@media (max-width: 700px) {
+  /* Celular: cada dor e sua solução viram um cartão. Legenda em cima, sem painéis de fundo. */
+  .comparar { display: block; }
+  .comparar-fundo, .comparar-seta { display: none; }
+  .comparar-titulo { display: inline-flex; gap: 8px; margin: 0 6px 14px 0; padding: 7px 14px 7px 8px; border-radius: 999px; font-size: .875rem; }
+  .comparar-titulo svg { width: 24px; height: 24px; }
+  .comparar-titulo-sem { border: 1px solid var(--lilas-borda); background: var(--branco); }
+  .comparar-titulo-sem svg { padding: 6px; }
+  .comparar-titulo-com { background: var(--roxo); }
+  .comparar-lista { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+  .par { display: block; overflow: hidden; border: 1px solid var(--lilas-borda); border-radius: 18px; background: var(--branco); box-shadow: 0 18px 30px -26px rgba(70, 0, 110, .35); }
+  .par-sem, .par-com, .par:last-child .par-sem, .par:last-child .par-com { margin: 0; padding: 14px 16px; border: 0 !important; font-size: .9375rem; }
+  .par-com { background: var(--roxo); }
+  /* a solução se abre da esquerda para a direita, logo depois do risco */
+  .par-com { clip-path: inset(0 100% 0 0); transition: clip-path .8s cubic-bezier(.65, 0, .35, 1) 1.15s; }
+  .par.riscado .par-com { clip-path: inset(0); }
+  :root { --t-corpo: 1rem; --t-abertura: 1.0625rem; }
+  .abertura, .abertura-texto { min-height: max(860px, 100svh); }
+  .abertura-texto { width: auto; margin: 0; padding: 108px 22px 0; align-items: center; justify-content: flex-start; text-align: center; }
+  .abertura h1 { font-size: clamp(2.7rem, 12vw, 4rem); }
+  /* No celular o bloco de texto vai até o fim da abertura: o véu cobre só o título, o texto e os botões */
+  .abertura-texto::before { inset: 84px -14% auto; height: 400px; background: radial-gradient(closest-side, rgba(255, 255, 255, .95) 62%, rgba(255, 255, 255, 0)); }
+  .abertura-sub { margin-top: 16px; max-width: 22rem; }
+  .abertura-acoes { flex-direction: column; align-items: stretch; width: min(100%, 22rem); margin-top: 26px; }
+  .palco-particulas { top: 58%; right: 0; width: 100%; height: 38%; }
+  .dica { right: 0; bottom: 3%; width: 100%; padding: 0 18px; }
+  .dica-mouse { display: none; }
+  .dica-toque { display: inline; }
+  .descer { display: none; }
+
+  .marcas { padding: 18px 0 20px; }
+  .marcas-titulo { padding: 0 22px; margin-bottom: 10px; font-size: .75rem; }
+  .marcas-grupo { --distancia: 56px; }
+  .marcas-grupo li { height: 64px; }
+
+  .vitrine-grade { display: flex; flex-direction: column; align-items: stretch; min-height: 0; gap: 24px; padding: 72px 22px 64px; }
+  .vitrine-texto { width: 100%; }
+  .vitrine h2 { font-size: clamp(2.1rem, 8.5vw, 3rem); }
+  .vitrine-sub { margin-top: 12px; }
+  .link-roxo { margin-top: 14px; }
+  .hexagonos { width: 100%; height: 166px; margin: 4px 0 0; }
+  .hex { --tam: 64px !important; }
+  .hex:nth-child(1) { left: 0; top: 4%; }
+  .hex:nth-child(2) { left: 20%; top: 47%; }
+  .hex:nth-child(3) { left: 40%; top: 0; }
+  .hex:nth-child(4) { left: 60%; top: 49%; }
+  .hex:nth-child(5) { left: calc(100% - 65px); top: 5%; }
+  .hex span { font-size: .75rem; }
+  .cena { align-self: center; }
+  .celular { width: min(78%, 360px); height: auto; }
+  .orbita { width: 120%; }
+  .orbita-2 { width: 140%; }
+
+  .diferenciais { grid-template-columns: 1fr; gap: 40px; }
+  .gestao-topo .botao { width: 100%; }
+  .botao-grande { width: 100%; max-width: 24rem; padding: 0 20px; font-size: var(--t-rotulo); }
+  .rotas .botao { flex: 1 1 100%; }
+  .rodape-grade { grid-template-columns: 1fr; gap: 28px; }
+  .whats-flutuante { right: 14px; bottom: 14px; width: 54px; height: 54px; }
+}
+
+/* Aparelhos sem mouse (celular, tablet): as dicas falam em tocar. */
+@media (hover: none) {
+  .dica-mouse { display: none; }
+  .dica-toque { display: inline; }
+}
+
+/* Telas de toque: nada clicável abaixo de 44px */
+@media (pointer: coarse) {
+  .marca { min-height: 44px; }
+  .abas button { min-height: 44px; }
+  .link-roxo { min-height: 44px; align-items: center; }
+  .descer { width: 44px; height: 44px; }
+}
+
+/* Celular deitado: a tela é baixa, então o aparelho da vitrine usa uma altura fixa
+   (rola junto) em vez de encolher até ficar ilegível */
+@media (orientation: landscape) and (max-height: 520px) {
+  .celular { height: 560px; }
+  .vitrine-grade { min-height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hex span, .orbita, .celular, .marcas-trilho { animation: none !important; }
+  .vitrine.revelada .vitrine-texto, .vitrine.revelada .cena, .vitrine.revelada .hexagonos { animation: none; }
+  .negocio.trocando { animation: esmaecer .2s ease-out both; }
+  .botao, .descer, .whats-flutuante, .link-roxo span, .seta { transform: none !important; }
+  .marcas-janela { overflow-x: auto; mask-image: none; scrollbar-width: thin; }
+  .copiar.copiado polyline { animation: none; }
+  .topo-conteudo, .nav-indicador, .marca-simbolo, .botao-seta svg { transition: none; }
+  .js [data-surgir] { opacity: 1; transform: none; transition: none; }
+  .whats-dica { transform: translate(0, -50%) !important; }
+  .whats-luz { transition: none; }
+  .tela { animation: esmaecer .2s ease-out; }
+  .abas-indicador, .tela-ampliar { transition: none; }
+  .status-luz::after { display: none; }
+  .zoom[open], .zoom.fechando { animation-duration: .01s; }
+  .nav-links a, .nav .botao-cta { translate: none !important; }
+  .botao .icone { transform: none !important; }
+  .risco, .par-com { transition: none !important; }
+  .abertura h1 .linha > span, .abertura-sub, .abertura-acoes, .dica, .descer, .topo-conteudo { animation: none; }
+  .tela, .zoom[open] { animation: none; }
+  .tela-ampliar img { transition: none; transform: none !important; }
+}
+@keyframes esmaecer { from { opacity: 0; } }

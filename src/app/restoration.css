@@ -1,0 +1,65 @@
+/* The original stylesheet is unchanged. Only previously requested adjustments. */
+body { --fonte: var(--font-inter), Inter, system-ui, sans-serif; }
+
+/* Constant navigation size while scrolling, matching the original at rest. */
+.topo.rolado .topo-conteudo { max-width: 1240px; height: 64px; }
+.topo-conteudo { transition-property: background-color, border-color, box-shadow; }
+.rodape-base { text-align: center; }
+.ambient-field { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
+
+/* Compact customer ribbon; original logo colors, names available through alt text. */
+.marcas { padding: 14px 0; }
+.marcas-grupo .cliente-identificado { width: 149.1px; height: 81.9px; display: grid; place-items: center; }
+.cliente-identificado figure { margin: 0; transform: scale(1.05); }
+.cliente-logo { width: 136px; height: 78px; display: grid; place-items: center; margin-inline: auto; }
+.marcas-grupo .cliente-logo img { width: auto; height: auto; max-width: 128px; max-height: 72px; object-fit: contain; }
+.cliente-logo-clara { background: #fff; border-radius: 12px; padding: 6px; }
+.marcas-grupo .cliente-logo-clara img { max-width: 116px; max-height: 64px; }
+
+/* Keep the new image formation, without rebuilding the surrounding hero. */
+.abertura { --formation-scroll: clamp(630px,105svh,1140px); overflow: clip; min-height: calc(max(700px,100svh) + var(--formation-scroll)); }
+.hero-pin { position: sticky; top: 0; min-height: max(700px,100svh); }
+.abertura .hero-particle-field { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+.hero-logo { position: absolute; left: 73.5%; top: 52%; width: min(calc(46% - 42px),437.5px); height: auto; max-height: 74%; object-fit: contain; transform: translate(-50%,-50%); z-index: 1; pointer-events: none; }
+.hero-particle-field[data-ready=true] + .hero-logo { visibility: hidden; }
+.particle-track { position: absolute; right: 2%; top: 76px; width: 49%; height: calc(100% - 106px); z-index: 2; }
+.abertura .particle-composition { position: relative; width: 100%; height: 100%; min-width: 0; }
+.particle-stage { position: relative; width: 100%; height: calc(100% - 44px); isolation: isolate; overflow: hidden; }
+.particle-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.particle-original { position: absolute; top: 50%; left: 50%; height: var(--menu-height,84%); width: var(--menu-width,auto); max-width: 86%; transform: translate(-50%,-50%); object-fit: contain; opacity: 1; }
+.particle-stage[data-phase=logo] .particle-original { opacity: 0; }
+.particle-stage[data-phase=forming] .particle-original { opacity: var(--image-opacity,0); }
+.particle-stage[data-phase=interactive] .particle-original { mask-image: radial-gradient(circle var(--pointer-radius,0px) at var(--pointer-x,0px) var(--pointer-y,0px),transparent 72%,#000 100%); -webkit-mask-image: radial-gradient(circle var(--pointer-radius,0px) at var(--pointer-x,0px) var(--pointer-y,0px),transparent 72%,#000 100%); }
+.particle-halo { position: absolute; z-index: -1; inset: 8% -5%; background: radial-gradient(ellipse at 50% 60%,#f4e8fa 0%,#fbf8fd 45%,transparent 72%); }
+.composition-index { position: absolute; right: 10px; top: 50%; writing-mode: vertical-rl; font-size: 9px; letter-spacing: .17em; color: #9c8da7; }
+.composition-caption { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4px 16px; min-height: 44px; font-size: 10px; color: var(--texto-suave); }
+.composition-caption button { border: 0; background: transparent; color: var(--roxo); padding: 8px 0; font-size: 10px; min-height: 44px; cursor: pointer; }
+.composition-caption button span { display: inline-block; margin-right: 4px; font-size: 17px; vertical-align: -1px; }
+.composition-caption button:hover { text-decoration: underline; }
+
+/* Keep the responsive sizes of the original navigation. */
+@media (max-width: 900px) {
+  .topo-conteudo, .topo.rolado .topo-conteudo { height: 58px; }
+}
+@media (max-width: 700px) {
+  .abertura { --formation-scroll: clamp(540px,97.5svh,960px); --stage-height: clamp(180px,calc(100svh - 154px),560px); min-height: 0; }
+  .hero-pin { position: static; min-height: 0; }
+  .hero-logo { left: 50%; top: min(77%,max(662.2px,77svh)); width: min(calc(100% - 56px),297.5px); max-height: none; }
+  .abertura-texto { min-height: 0; }
+  .particle-track { position: relative; top: auto; right: auto; width: 100%; height: calc(var(--stage-height) + 62px + var(--formation-scroll)); margin-top: 12px; }
+  .abertura .particle-composition { position: sticky; top: 84px; height: calc(var(--stage-height) + 62px); }
+  .particle-stage { height: var(--stage-height); }
+  .composition-caption { height: 62px; padding: 0 18px 18px; font-size: 9px; }
+  .marcas { padding: 12px 0; }
+  .marcas-grupo .cliente-identificado { width: 123.9px; height: 65.1px; }
+  .cliente-logo { width: 112px; height: 62px; }
+  .marcas-grupo .cliente-logo img { max-width: 104px; max-height: 58px; }
+  .marcas-grupo .cliente-logo-clara img { max-width: 92px; max-height: 50px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .abertura { --formation-scroll: 0px; }
+  .hero-pin, .abertura .particle-composition { position: relative; top: auto; }
+  .composition-caption { visibility: hidden; }
+  .hero-particle-field, .hero-logo { display: none; }
+  .particle-original { opacity: 1 !important; mask-image: none !important; -webkit-mask-image: none !important; }
+}

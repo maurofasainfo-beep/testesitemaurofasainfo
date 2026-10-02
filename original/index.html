@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=d99fdff8-3ded-45fb-a220-30f3b385d213
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu10 — Cardápio digital sem comissão por pedido | Fasa Informática</title>
+  <meta name="description" content="Menu10: cardápio digital com a cara do seu restaurante, sem comissão por pedido. Cozinha, entregas, iFood, IA no WhatsApp, NFC-e e relatórios num sistema só, com suporte de perto em Cerquilho - SP.">
+  <meta name="theme-color" content="#ffffff">
+  <!-- O site é só claro: impede navegadores (Opera GX, Chrome com "modo escuro forçado") de inverterem as cores -->
+  <meta name="color-scheme" content="only light">
+  <meta property="og:title" content="Menu10 — Seu delivery ganha forma">
+  <meta property="og:description" content="Cardápio digital sem comissão por pedido. Cozinha, entregas, iFood, WhatsApp e nota fiscal num sistema só. Suporte em Cerquilho - SP.">
+  <meta property="og:image" content="assets/img/cardapio-pizzaria.webp">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%238000bb' d='M32 3 57 17v30L32 61 7 47V17z'/%3E%3Cpath fill='white' d='M16 46V19h6l10 12 10-12h6v27h-6V28L32 40 22 28v18z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..750&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/img/cardapio-pizzaria.webp">
+  <script>
+    document.documentElement.classList.add("js");
+    // F5 recomeça do topo: o navegador não restaura a rolagem e, só no recarregamento,
+    // o #seção sai do endereço (um link com #suporte, aberto de fora, continua funcionando).
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    (function () {
+      var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+      var recarregou = nav ? nav.type === "reload" : performance.navigation && performance.navigation.type === 1;
+      if (recarregou && location.hash) history.replaceState(null, "", location.pathname + location.search);
+      window.addEventListener("load", function () { if (recarregou || !location.hash) window.scrollTo({ top: 0, left: 0, behavior: "instant" }); });
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===================== CABEÇALHO ===================== -->
+  <header class="topo">
+    <div class="topo-conteudo">
+      <a href="#inicio" class="marca" aria-label="Menu10, início">
+        <svg class="marca-simbolo" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-marca"/></svg>
+        <span>MENU10</span>
+      </a>
+
+      <button class="menu-botao" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span>
+      </button>
+
+      <nav id="nav" class="nav" aria-label="Principal">
+        <div class="nav-links">
+          <span class="nav-indicador" aria-hidden="true"></span>
+          <a href="#cardapios">Cardápios</a>
+          <a href="#recursos">Recursos</a>
+          <a href="#gestao">Relatórios</a>
+          <a href="#suporte">Suporte</a>
+        </div>
+        <a href="https://wa.me/5515996981803" data-link="whatsapp" target="_blank" rel="noopener" class="botao botao-roxo botao-cta">Pedir demonstração<span class="botao-seta" aria-hidden="true"><svg><use href="#i-seta"/></svg></span></a>
+      </nav>
+      <span class="topo-progresso" aria-hidden="true"></span>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- ===================== ABERTURA: as partículas formam a marca ===================== -->
+    <section id="inicio" class="abertura" aria-labelledby="titulo-abertura">
+      <canvas id="particulas" aria-hidden="true"></canvas>
+      <div class="abertura-texto">
+        <h1 id="titulo-abertura"><span class="linha"><span>Seu delivery</span></span> <span class="linha"><span>ganha <em>forma.</em></span></span></h1>
+        <p class="abertura-sub">
+          Cardápio digital com a cara do seu restaurante, sem comissão por pedido.
+          Cozinha, entregas, iFood, WhatsApp e nota fiscal num sistema só.
+        </p>
+        <div class="abertura-acoes">
+          <a href="https://wa.me/5515996981803" data-link="whatsapp" target="_blank" rel="noopener" class="botao botao-roxo">
+            <svg class="icone" aria-hidden="true"><use href="#i-whats"/></svg>
+            Pedir demonstração no WhatsApp
+          </a>
+          <a href="#cardapios" class="botao botao-linha">Explore os cardápios <span class="seta" aria-hidden="true">↘</span></a>
+        </div>
+      </div>
+      <div class="palco-particulas" id="palco-particulas" tabindex="0" role="button"
+           aria-label="Passe o mouse, toque ou pressione Enter para formar o símbolo do Menu10 com as partículas"></div>
+      <p class="dica"><span class="dica-mouse">Mova o mouse sobre as partículas</span><span class="dica-toque">Toque nas partículas</span></p>
+      <a class="descer" href="#clientes" aria-label="Descer para os clientes"><span aria-hidden="true">↓</span></a>
+    </section>
+
+    <!-- ===================== CLIENTES: faixa roxa em movimento ===================== -->
+    <section id="clientes" class="marcas" aria-labelledby="titulo-marcas">
+      <h2 id="titulo-marcas" class="marcas-titulo">Onde o Menu10 está</h2>
+      <div class="marcas-janela">
+        <div class="marcas-trilho">
+          <ul class="marcas-grupo" aria-label="Restaurantes que usam o Menu10">
+            <li><img src="assets/img/marca-diniz.webp" alt="Pizzaria Diniz Delivery" width="241" height="240"></li>
+            <li><img src="assets/img/marca-don-betones.webp" alt="Don Betones Pizza" width="223" height="240"></li>
+            <li><img src="assets/img/marca-shacks-grill.webp" alt="Shacks Grill Hamburgueria" width="277" height="240"></li>
+            <li><img src="assets/img/marca-bens-chicken.webp" alt="Ben's Chicken" width="348" height="240"></li>
+            <li><img src="assets/img/marca-benitos.webp" alt="Benito's Pizzaria" width="185" height="240"></li>
+            <li><img src="assets/img/marca-cliente-5.webp" alt="Restaurante cliente do Menu10" width="161" height="240"></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CARDÁPIOS: hexágonos flutuantes trocam o celular ===================== -->
+    <section id="cardapios" class="vitrine" aria-labelledby="titulo-vitrine">
+      <div class="vitrine-grade">
+        <div class="vitrine-texto" data-revelar>
+          <h2 id="titulo-vitrine">Veja como seu cardápio pode ficar <span class="negocio" id="negocio" aria-live="polite">na sua pizzaria.</span></h2>
+          <p class="vitrine-sub">Escolha um dos hexágonos para trocar o cardápio.</p>
+          <a href="https://wa.me/5515996981803" data-link="whatsapp" target="_blank" rel="noopener" class="link-roxo">Quero o meu assim <span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="hexagonos" data-revelar data-paralaxe="-0.03" role="group" aria-label="Tipos de negócio: escolha um para trocar o cardápio">
+          <button class="hex" type="button" data-cardapio="pizzaria" aria-pressed="true"><span>Pizza</span></button>
+          <button class="hex" type="button" data-cardapio="japones" aria-pressed="false"><span>Japonês</span></button>
+          <button class="hex" type="button" data-cardapio="pastelaria" aria-pressed="false"><span>Pastel</span></button>
+          <button class="hex" type="button" data-cardapio="acai" aria-pressed="false"><span>Açaí</span></button>
+          <button class="hex" type="button" data-cardapio="marmitaria" aria-pressed="false"><span>Marmita</span></button>
+        </div>
+
+        <div class="cena" data-revelar data-paralaxe="0.05">
+          <div class="orbita orbita-1" aria-hidden="true"></div>
+          <div class="orbita orbita-2" aria-hidden="true"></div>
+          <div class="celular" id="celular">
+            <img class="celular-tela" id="celular-tela" src="assets/img/cardapio-pizzaria.webp" width="640" height="1302"
+                 alt="Exemplo de cardápio digital de pizzaria no celular, com banner, categorias e bebidas">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== POR QUE O MENU10 ===================== -->
+    <section id="diferenciais" class="secao" aria-labelledby="titulo-diferenciais">
+      <div class="container">
+        <h2 id="titulo-diferenciais" class="titulo-secao" data-surgir>Tudo que o seu delivery precisa, <em>sem comissão.</em></h2>
+        <ul class="diferenciais">
+          <li data-surgir>
+            <svg class="hex-marca" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,30 97,85 50,112 3,85 3,30"/></svg>
+            <h3>Sem taxa por pedido</h3>
+            <p>Você vende pelo seu próprio cardápio, sem comissão como nos aplicativos de entrega.</p>
+          </li>
+          <li data-surgir>
+            <svg class="hex-marca" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,30 97,85 50,112 3,85 3,30"/></svg>
+            <h3>Tudo num sistema só</h3>
+            <p>Cardápio, cozinha, entregas, iFood, WhatsApp, nota fiscal e relatórios juntos.</p>
+          </li>
+          <li data-surgir>
+            <svg class="hex-marca" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,30 97,85 50,112 3,85 3,30"/></svg>
+            <h3>IA no WhatsApp</h3>
+            <p>Atendimento automático no WhatsApp, com avaliador de segurança e registro das conversas.</p>
+          </li>
+          <li data-surgir>
+            <svg class="hex-marca" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,30 97,85 50,112 3,85 3,30"/></svg>
+            <h3>Suporte especializado</h3>
+            <p>Equipe especializada no Menu10, que atende pelo WhatsApp e presencialmente.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== RECURSOS: Sem o Menu10 × Com o Menu10 ===================== -->
+    <section id="recursos" class="secao secao-lilas" aria-labelledby="titulo-recursos">
+      <div class="container">
+        <div class="cabecalho">
+          <h2 id="titulo-recursos" class="titulo-secao" data-surgir>Tudo o que o Menu10 faz, <em>em um só sistema.</em></h2>
+          <p data-surgir>Veja o que muda no dia a dia do seu restaurante.</p>
+        </div>
+
+        <div class="comparar">
+          <span class="comparar-fundo comparar-fundo-sem" aria-hidden="true"></span>
+          <span class="comparar-fundo comparar-fundo-com" aria-hidden="true"></span>
+          <h3 class="comparar-titulo comparar-titulo-sem" aria-hidden="true"><svg><use href="#i-fechar"/></svg>Sem o Menu10</h3>
+          <h3 class="comparar-titulo comparar-titulo-com" aria-hidden="true"><svg><use href="#i-marca"/></svg>Com o Menu10</h3>
+          <span class="comparar-seta" aria-hidden="true"><svg><use href="#i-seta"/></svg></span>
+          <ul class="comparar-lista" aria-label="O que muda no dia a dia com o Menu10">
+            <li class="par" style="--r: 2">
+              <p class="par-sem" data-surgir><svg aria-hidden="true"><use href="#i-fechar"/></svg><span><span class="visualmente-oculto">Sem o Menu10: </span><span class="risco">Pedido anotado no papel, na correria</span></span></p>
+              <p class="par-com" data-surgir><svg aria-hidden="true"><use href="#i-check"/></svg><span><span class="visualmente-oculto">Com o Menu10: </span>Pedido cai sozinho na tela da cozinha</span></p>
+            </li>
+            <li class="par" style="--r: 3">
+              <p class="par-sem" data-surgir><svg aria-hidden="true"><use href="#i-fechar"/></svg><span><span class="visualmente-oculto">Sem o Menu10: </span><span class="risco">WhatsApp lotado e cliente esperando resposta</span></span></p>
+              <p class="par-com" data-surgir><svg aria-hidden="true"><use href="#i-check"/></svg><span><span class="visualmente-oculto">Com o Menu10: </span>O robô do WhatsApp responde na hora</span></p>
+            </li>
+            <li class="par" style="--r: 4">
+              <p class="par-sem" data-surgir><svg aria-hidden="true"><use href="#i-fechar"/></svg><span><span class="visualmente-oculto">Sem o Menu10: </span><span class="risco">Comissão do aplicativo em todo pedido</span></span></p>
+              <p class="par-com" data-surgir><svg aria-hidden="true"><use href="#i-check"/></svg><span><span class="visualmente-oculto">Com o Menu10: </span>Pedido direto no seu cardápio, sem comissão</span></p>
+            </li>
+            <li class="par" style="--r: 5">
+              <p class="par-sem" data-surgir><svg aria-hidden="true"><use href="#i-fechar"/></svg><span><span class="visualmente-oculto">Sem o Menu10: </span><span class="risco">Cliente que pediu uma vez e sumiu</span></span></p>
+              <p class="par-com" data-surgir><svg aria-hidden="true"><use href="#i-check"/></svg><span><span class="visualmente-oculto">Com o Menu10: </span>Cashback e cupom trazem o cliente de volta</span></p>
+            </li>
+            <li class="par" style="--r: 6">
+              <p class="par-sem" data-surgir><svg aria-hidden="true"><use href="#i-fechar"/></svg><span><span class="visualmente-oculto">Sem o Menu10: </span><span class="risco">Nota fiscal digitada depois, uma por uma</span></span></p>
+              <p class="par-com" data-surgir><svg aria-hidden="true"><use href="#i-check"/></svg><span><span class="visualmente-oculto">Com o Menu10: </span>A NFC-e sai direto do pedido</span></p>
+            </li>
+            <li class="par" style="--r: 7">
+              <p class="par-sem" data-surgir><svg aria-hidden="true"><use href="#i-fechar"/></svg><span><span class="visualmente-oculto">Sem o Menu10: </span><span class="risco">Só no fim do mês você descobre como foi</span></span></p>
+              <p class="par-com" data-surgir><svg aria-hidden="true"><use href="#i-check"/></svg><span><span class="visualmente-oculto">Com o Menu10: </span>Relatório mostra o que vendeu, todo dia</span></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RELATÓRIOS: painel com os gráficos reais, em roxo ===================== -->
+    <section id="gestao" class="secao" aria-labelledby="titulo-gestao">
+      <div class="container">
+        <div class="gestao-topo">
+          <div data-surgir>
+            <h2 id="titulo-gestao" class="titulo-secao">No fim do dia, você sabe <em>exatamente como foi.</em></h2>
+            <p>Relatórios que mostram o que vendeu, quando e para quem — sem planilha.</p>
+          </div>
+          <a href="https://wa.me/5515996981803" data-link="whatsapp" target="_blank" rel="noopener" class="botao botao-roxo" data-surgir>Quero ver os meus números</a>
+        </div>
+
+        <div class="painel" data-surgir="tela">
+          <div class="painel-barra">
+            <span class="painel-marca"><svg aria-hidden="true"><use href="#i-marca"/></svg>Relatórios</span>
+            <span class="abas" role="tablist" aria-label="Telas do relatório">
+              <span class="abas-indicador" aria-hidden="true"></span>
+              <button type="button" role="tab" id="aba-vendas" aria-controls="tela-vendas" aria-selected="true">Vendas</button>
+              <button type="button" role="tab" id="aba-avaliacoes" aria-controls="tela-avaliacoes" aria-selected="false" tabindex="-1">Avaliações</button>
+            </span>
+          </div>
+          <div class="tela" id="tela-vendas" role="tabpanel" aria-labelledby="aba-vendas">
+            <button type="button" class="tela-ampliar" aria-label="Ampliar a tela de vendas">
+              <img src="assets/img/relatorio-vendas.webp" width="1600" height="959" loading="lazy" decoding="async" alt="Tela real de relatórios do Menu10: pedidos por dia da semana, com o sábado como melhor dia (605 pedidos); modalidade de entrega, com 63,6% de consumo no local; vendas por canal, com 61,5% pela comanda; vendas por horário, com o melhor horário das 19h às 20h (261 pedidos); melhores bairros e mapa de calor.">
+              <span class="tela-lupa" aria-hidden="true"><svg><use href="#i-lupa"/></svg>Ampliar</span>
+            </button>
+          </div>
+          <div class="tela" id="tela-avaliacoes" role="tabpanel" aria-labelledby="aba-avaliacoes" hidden>
+            <button type="button" class="tela-ampliar" aria-label="Ampliar a tela de avaliações">
+              <img src="assets/img/relatorio-avaliacoes.webp" width="1487" height="948" loading="lazy" decoding="async" alt="Tela real da pesquisa de satisfação do Menu10: nota 4,7 em 544 avaliações (472 de cinco estrelas) e índice NPS de 86%, com 90,6% de promotores.">
+              <span class="tela-lupa" aria-hidden="true"><svg><use href="#i-lupa"/></svg>Ampliar</span>
+            </button>
+          </div>
+          <p class="painel-fonte">Telas reais do sistema, com os dados de um restaurante cliente.</p>
+        </div>
+
+        <dialog class="zoom" aria-label="Tela ampliada">
+          <button type="button" class="zoom-fechar" aria-label="Fechar"><svg aria-hidden="true"><use href="#i-fechar"/></svg></button>
+          <div class="zoom-rolagem"><img alt=""></div>
+        </dialog>
+
+        <div class="painel-mais" data-surgir>
+          <p>Também no painel:</p>
+          <ul class="pilulas" aria-label="Outros relatórios">
+            <li>Faturamento e ticket médio</li>
+            <li>Mapa de calor por bairro</li>
+            <li>Raio-X do negócio</li>
+            <li>Comissão da equipe</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SUPORTE DE PERTO ===================== -->
+    <section id="suporte" class="secao secao-lilas" aria-labelledby="titulo-suporte">
+      <div class="container suporte">
+        <div class="suporte-texto">
+          <h2 id="titulo-suporte" class="titulo-secao" data-surgir>Suporte de perto, <em>aqui em Cerquilho.</em></h2>
+          <p data-surgir>
+            O Menu10 é desenvolvido pela <span data-empresa="nome">Fasa Informática</span>. Você fala
+            com a nossa equipe pelo WhatsApp e, quando precisar, a gente atende presencialmente.
+          </p>
+
+          <div class="status" id="status-atendimento" data-surgir>
+            <span class="status-luz" aria-hidden="true"></span>
+            <div>
+              <p class="status-texto" id="status-texto">Seg a Sex, 8h às 17h30 · Sáb, 8h às 12h</p>
+              <p class="status-detalhe" id="status-detalhe">Horário de Brasília</p>
+            </div>
+          </div>
+
+          <dl class="dados" data-surgir>
+            <div>
+              <dt>WhatsApp</dt>
+              <dd><a href="https://wa.me/5515996981803" data-link="whatsapp" target="_blank" rel="noopener" class="dado-link" data-empresa="telefone">(15) 99698-1803</a><button class="copiar" type="button" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><polyline points="2.5,8.5 6.5,12.5 13.5,3.5" pathLength="1"/></svg><span class="copiar-texto">Copiar número</span></button><span class="visualmente-oculto" id="copiar-aviso" aria-live="polite"></span></dd>
+            </div>
+            <div>
+              <dt>Endereço</dt>
+              <dd data-empresa="endereco">Av. João Pilon, 307 - 1º andar, Salas 07/08 - Cerquilho - SP</dd>
+            </div>
+          </dl>
+
+          <div class="rotas" data-surgir>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20Jo%C3%A3o%20Pilon%2C%20307%2C%20Cerquilho%20-%20SP" data-link="maps" target="_blank" rel="noopener" class="botao botao-linha">
+              <svg class="icone icone-maps" aria-hidden="true"><use href="#i-pino"/></svg> Ver no Google Maps
+            </a>
+            <a href="https://waze.com/ul?q=Av.%20Jo%C3%A3o%20Pilon%2C%20307%2C%20Cerquilho%20-%20SP&amp;navigate=yes" data-link="waze" target="_blank" rel="noopener" class="botao botao-linha">
+              <svg class="icone icone-waze" aria-hidden="true"><use href="#i-waze"/></svg> Ver no Waze
+            </a>
+          </div>
+        </div>
+
+        <div class="mapa" data-surgir>
+          <p class="mapa-aviso">Carregando o mapa… Se ele não aparecer, use os botões do Google Maps ou do Waze.</p>
+          <iframe id="mapa" title="Mapa com a localização da Fasa Informática em Cerquilho" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Av.%20Jo%C3%A3o%20Pilon%2C%20307%2C%20Cerquilho%20-%20SP&amp;z=16&amp;output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FECHAMENTO ===================== -->
+    <section class="fechamento" aria-labelledby="titulo-fechamento">
+      <!-- Campo de fluxo (fluxo.js): fios lilás que giram em volta do mouse ou do dedo. -->
+      <canvas class="fluxo" aria-hidden="true"></canvas>
+      <div class="fluxo-veu" aria-hidden="true"></div>
+      <div class="container fechamento-conteudo">
+        <h2 id="titulo-fechamento" data-surgir>Veja o Menu10 funcionando <span class="fechamento-negocio" id="fechamento-negocio" aria-live="polite">no seu restaurante.</span></h2>
+        <p data-surgir>Chame no WhatsApp e marque uma demonstração sem compromisso.</p>
+        <a href="https://wa.me/5515996981803" data-link="whatsapp" target="_blank" rel="noopener" class="botao botao-branco botao-grande" data-surgir>
+          <svg class="icone" aria-hidden="true"><use href="#i-whats"/></svg>
+          Pedir demonstração no WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="rodape">
+    <div class="container rodape-grade">
+      <div class="rodape-marca" data-surgir>
+        <svg class="marca-simbolo" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-marca"/></svg>
+        <p><strong>MENU10</strong><br>Um sistema <span data-empresa="nome">Fasa Informática</span>.</p>
+      </div>
+      <div data-surgir>
+        <h2 class="rodape-titulo">Fale com a gente</h2>
+        <a href="https://wa.me/5515996981803" data-link="whatsapp" target="_blank" rel="noopener">WhatsApp <span data-empresa="telefone">(15) 99698-1803</span></a>
+        <p data-empresa="horario">Seg a Sex, 8h às 17h30 · Sáb, 8h às 12h</p>
+      </div>
+      <div data-surgir>
+        <h2 class="rodape-titulo">Onde estamos</h2>
+        <p data-empresa="endereco">Av. João Pilon, 307 - 1º andar, Salas 07/08 - Cerquilho - SP</p>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20Jo%C3%A3o%20Pilon%2C%20307%2C%20Cerquilho%20-%20SP" data-link="maps" target="_blank" rel="noopener">Ver no Google Maps</a>
+        <a href="https://waze.com/ul?q=Av.%20Jo%C3%A3o%20Pilon%2C%20307%2C%20Cerquilho%20-%20SP&amp;navigate=yes" data-link="waze" target="_blank" rel="noopener">Ver no Waze</a>
+      </div>
+    </div>
+    <div class="container rodape-base">
+      © <span id="ano">2026</span> <span data-empresa="nome">Fasa Informática</span>. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- Botão flutuante do WhatsApp -->
+  <a href="https://wa.me/5515996981803" data-link="whatsapp" target="_blank" rel="noopener" class="whats-flutuante" aria-label="Pedir demonstração no WhatsApp">
+    <svg aria-hidden="true"><use href="#i-whats"/></svg>
+    <span class="whats-luz" aria-hidden="true"></span>
+    <span class="whats-dica" aria-hidden="true"></span>
+  </a>
+
+  <!-- ===================== ÍCONES ===================== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-marca" viewBox="0 0 64 64"><path fill="currentColor" d="M32 3 57 17v30L32 61 7 47V17z"/><path fill="#fff" d="M16 46V19h6l10 12 10-12h6v27h-6V28L32 40 22 28v18z"/></symbol>
+    <symbol id="i-whats" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3Z"/></symbol>
+    <symbol id="i-seta" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-lupa" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="m15.5 15.5 5 5M10.5 8v5M8 10.5h5"/></symbol>
+    <symbol id="i-fechar" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-pino" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-waze" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6.5 17.2A8.3 8.3 0 0 1 3 12.5c0-4.7 4-8.5 9-8.5s9 3.8 9 8.5-4 8-9 8h-2.5M6.5 17.2c-.9.3-2.2.2-3-.8"/><circle cx="8" cy="19.3" r="1.7" fill="currentColor"/><circle cx="15.5" cy="19.3" r="1.7" fill="currentColor"/><circle cx="9.3" cy="10.3" r="1" fill="currentColor"/><circle cx="14.8" cy="10.3" r="1" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M9.3 13.6c1.5 1.4 4 1.4 5.5 0"/></symbol>
+  </svg>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/particulas.js" defer></script>
+  <script src="assets/js/vitrine.js" defer></script>
+  <script src="assets/js/fluxo.js" defer></script>
+  <script src="assets/js/relatorio.js" defer></script>
+  <script src="assets/js/movimento.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

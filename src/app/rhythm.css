@@ -1,0 +1,97 @@
+/* Section-specific palette. Existing brand tokens and approved sections are unchanged. */
+:root {
+  --fundo-escuro: #0e0a14;
+  --roxo-no-escuro: #d6a6f2;
+  --texto-no-escuro: rgb(255 255 255 / .78);
+  --borda-no-escuro: rgb(255 255 255 / .14);
+}
+.launch-section:not(.launch-numbers), .reform-section.reform-pricing, .reform-section.reform-support, body .menu10-faq { padding-block: 48px; }
+.order-journey { position: relative; isolation: isolate; background: var(--fundo-escuro); color: var(--texto-no-escuro); overflow: clip; }
+.order-journey::before { position: absolute; inset: 0; z-index: -1; content: ""; background: repeating-linear-gradient(to bottom,transparent 0 31px,rgb(255 255 255 / .06) 31px 32px); mask-image: linear-gradient(to right,transparent,#000 15%,#000 85%,transparent); pointer-events: none; }
+.order-journey h2 { color: var(--branco); margin-bottom: 32px; }
+.order-journey h2 em { color: var(--roxo-no-escuro); }
+.order-carousel { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 16px 8px 12px; scroll-snap-type: x mandatory; scroll-padding-inline: 12px; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: var(--roxo-no-escuro) transparent; }
+.order-board { position: relative; width: 1416px; }
+.order-board ol { position: relative; display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 16px; list-style: none; margin: 0; padding: 12px 6px 26px; }
+.order-thread { position: absolute; inset: 0; width: 100%; height: 100%; color: rgb(255 255 255 / .28); pointer-events: none; }
+.order-slot { --note-accent: var(--roxo-no-escuro); min-width: 0; scroll-snap-align: center; }
+.order-slot:nth-child(even) { padding-top: 28px; }
+.order-tone-1 { --note-accent: var(--lilas-no-roxo); }
+.order-tone-2 { --note-accent: #c9becf; }
+.order-note { position: relative; padding: 38px 10px 10px; border: 1px solid rgb(255 255 255 / .1); border-radius: 20px; background: #1c1722; outline-offset: 5px; transform: rotate(-2deg); }
+.order-slot:nth-child(even) .order-note { transform: rotate(2deg); }
+.order-pin { position: absolute; top: 8px; left: calc(50% - 9px); width: 18px; height: 24px; color: var(--note-accent); }
+.order-note-inner { min-height: 250px; padding: 14px; border: 1px solid color-mix(in srgb,var(--note-accent) 24%,transparent); border-radius: 13px; background: color-mix(in srgb,var(--note-accent) 9%,transparent); }
+.order-number { display: block; margin-bottom: 14px; color: var(--note-accent); font-size: 2.2rem; line-height: 1; font-weight: 550; font-variant-numeric: tabular-nums; }
+.order-journey .order-note h3 { color: var(--branco); font-size: 1.1rem; line-height: 1.25; margin-bottom: 12px; }
+.order-note p { color: var(--texto-no-escuro); font-size: .875rem; line-height: 1.6; }
+.order-journey .order-report-link { color: var(--roxo-no-escuro); margin-top: 4px; }
+.order-journey :focus-visible { outline-color: var(--roxo-no-escuro); }
+.operations { background: var(--branco); }
+.operations-columns { display: grid; gap: 40px; }
+.operations-column { min-width: 0; scroll-margin-top: 20px; }
+.operations-column h2 { margin-bottom: 32px; }
+.operations .flavor-demo { padding: 20px; }
+.operations .flavor-demo li { grid-template-columns: minmax(0,1fr) auto; gap: 8px; align-items: center; }
+.operations .flavor-caption { max-width: 48ch; }
+.cash-summary { margin-top: 16px; color: var(--texto-suave); font-size: var(--t-meta); line-height: 1.7; }
+.operations .backoffice-groups { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 32px 22px; margin: 0; }
+.operations .backoffice-groups h3 { font-size: 1.3rem; }
+.launch-section.onboarding { background: var(--roxo); color: var(--branco); }
+.onboarding h2, .onboarding h2 em, .onboarding h3 { color: var(--branco); }
+.onboarding .onboarding-track li > span { background: var(--roxo); color: var(--lilas-no-roxo); }
+.onboarding .onboarding-line { background: var(--lilas-no-roxo); }
+body .menu10-faq { background: var(--fundo-escuro); color: var(--branco); }
+body .menu10-faq-header p, body .menu10-faq-number { color: var(--roxo-no-escuro); }
+body .menu10-faq-header h2, body .menu10-faq-item h3 button, body .menu10-faq-plus { color: var(--branco); }
+body .menu10-faq-tabs button { background: transparent; color: var(--texto-no-escuro); border-color: rgb(255 255 255 / .2); }
+body .menu10-faq-tabs button[aria-selected=true] { background: var(--roxo); border-color: var(--roxo); color: var(--branco); }
+body .menu10-faq-item { border-bottom: 1px solid var(--borda-no-escuro); }
+body .menu10-faq-answer { color: var(--texto-no-escuro); }
+body .menu10-faq :focus-visible { outline-color: var(--roxo-no-escuro); }
+.reform-section.reform-support { background: var(--branco); }
+.support-columns { display: grid; gap: 32px; }
+.support-content { min-width: 0; }
+.support-map { align-self: center; min-width: 0; text-align: left; }
+.support-map-stage { position: relative; height: 240px; border: 1px solid var(--lilas-borda); border-radius: var(--raio); overflow: hidden; background: var(--lilas-fundo); }
+.support-map-fallback { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 24px; text-align: center; }
+.support-map-fallback p { font-size: var(--t-rotulo); }
+.support-map a { display: inline-flex; align-items: center; min-height: 44px; color: var(--roxo); text-decoration: underline; font-size: var(--t-meta); }
+.support-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; opacity: 0; pointer-events: none; }
+.support-map iframe.is-loaded { opacity: 1; pointer-events: auto; }
+.support-map-address { margin-top: 12px; font-size: var(--t-meta); color: var(--texto-suave); }
+.rodape { background: var(--fundo-escuro); color: rgb(255 255 255 / .7); border-top-color: rgb(255 255 255 / .12); }
+.rodape-marca p { color: rgb(255 255 255 / .7); }
+.rodape-marca strong, .rodape-titulo { color: var(--branco); }
+.rodape-grade a:hover, .rodape-grade a:focus-visible { color: var(--roxo-no-escuro); text-decoration: underline; }
+.rodape-base { border-top-color: rgb(255 255 255 / .12); }
+.rodape :focus-visible { outline-color: var(--roxo-no-escuro); }
+@media (min-width: 760px) {
+  .launch-section:not(.launch-numbers), .reform-section.reform-pricing, .reform-section.reform-support, body .menu10-faq { padding-block: clamp(48px,6vw,88px); }
+  .operations-columns, .support-columns { grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(32px,5vw,72px); }
+  .support-content { text-align: left; }
+  .support-content .reform-support-copy { margin-inline: 0; }
+  .support-content .reform-phone, .support-content .reform-map-links { justify-content: flex-start; }
+  .support-content .reform-location { margin-inline: 0; }
+  .support-map-stage { height: 320px; }
+}
+@media (min-width: 1024px) {
+  .order-journey.launch-section { padding-block: 48px; }
+  .order-journey > .container { padding-inline: 12px; }
+  .order-carousel { overflow: visible; padding-inline: 0; }
+  .order-board { width: 100%; }
+  .order-board ol { gap: 8px; padding-inline: 4px; }
+  .order-note { padding-inline: 7px; border-radius: 16px; }
+  .order-note-inner { padding: 12px; min-height: 302px; }
+  .order-journey h2 { white-space: nowrap; }
+}
+@media (min-width: 1281px) {
+  .order-journey > .container { padding-inline: var(--gutter); }
+  .order-board ol { gap: 18px; }
+  .order-note-inner { min-height: 250px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .order-note { opacity: 1 !important; transform: rotate(-2deg) !important; }
+  .order-slot:nth-child(even) .order-note { transform: rotate(2deg) !important; }
+  .order-carousel { scroll-behavior: auto !important; }
+}

@@ -1,0 +1,64 @@
+{
+  "menus": [
+    {
+      "id": "pizzaria",
+      "label": "Pizzaria",
+      "src": "/images/sections/pizzaria.webp",
+      "width": 520,
+      "height": 1076,
+      "alt": "Cardápio de pizzaria com a identidade do estabelecimento, em uma moldura de celular"
+    },
+    {
+      "id": "hamburgueria",
+      "label": "Hamburgueria",
+      "src": "/images/sections/hamburgueria.webp",
+      "width": 520,
+      "height": 1076,
+      "alt": "Cardápio de hamburgueria com a identidade do estabelecimento, em uma moldura de celular"
+    },
+    {
+      "id": "marmitaria",
+      "label": "Marmitaria",
+      "src": "/images/sections/marmitaria.webp",
+      "width": 520,
+      "height": 1076,
+      "alt": "Cardápio de marmitaria com a identidade do estabelecimento, em uma moldura de celular"
+    },
+    {
+      "id": "sushi",
+      "label": "Sushi",
+      "src": "/images/sections/sushi.webp",
+      "width": 520,
+      "height": 1076,
+      "alt": "Cardápio de sushi com a identidade do estabelecimento, em uma moldura de celular"
+    },
+    {
+      "id": "pastel",
+      "label": "Pastelaria",
+      "src": "/images/sections/pastel.webp",
+      "width": 520,
+      "height": 1076,
+      "alt": "Cardápio de pastelaria com a identidade do estabelecimento, em uma moldura de celular"
+    }
+  ],
+  "reports": [
+    {
+      "id": "vendas",
+      "label": "Vendas",
+      "src": "/assets/img/relatorio-vendas.webp",
+      "width": 1600,
+      "height": 959,
+      "alt": "Tela real de relatórios do Menu10, com vendas por dia, modalidade, canal e horário, bairros e mapa de calor.",
+      "caption": "Veja o que vendeu, quando e de quais bairros vêm os pedidos."
+    },
+    {
+      "id": "avaliacoes",
+      "label": "Avaliações",
+      "src": "/assets/img/relatorio-avaliacoes.webp",
+      "width": 1487,
+      "height": 948,
+      "alt": "Tela real da pesquisa de satisfação no Menu10, com avaliações do atendimento e índice NPS.",
+      "caption": "Acompanhe as avaliações do atendimento e a satisfação dos seus clientes."
+    }
+  ]
+}

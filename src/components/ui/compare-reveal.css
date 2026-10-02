@@ -1,0 +1,39 @@
+.menu10-layouts { padding: 36px 0; color: var(--tinta); background: var(--lilas-fundo); }
+.menu10-layouts-grid { display: grid; align-items: center; gap: 28px; }
+.menu10-layouts-copy { min-width: 0; max-width: 520px; }
+.menu10-layouts-eyebrow { margin-bottom: 14px; color: var(--roxo); font-size: var(--t-meta); font-weight: 600; }
+.menu10-layouts h2 { font-size: clamp(1.9rem,3.6vw,3rem); line-height: 1.12; font-weight: 640; letter-spacing: -.035em; text-wrap: balance; }
+.menu10-layouts-intro { margin: 20px 0 26px; max-width: 44ch; color: var(--texto); line-height: 1.65; }
+.menu10-layouts-details { margin: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.menu10-layouts-details > div { padding: 22px 20px; border: 1px solid var(--lilas-borda); border-radius: var(--raio); background: var(--branco); }
+.menu10-layouts-details dt { font-size: var(--t-corpo); font-weight: 600; line-height: 1.35; letter-spacing: -.02em; color: var(--tinta); }
+.menu10-layouts-details dd { margin: 12px 0 0; color: var(--texto-suave); font-size: var(--t-meta); line-height: 1.6; }
+.menu10-layouts-visual { min-width: 0; }
+.menu10-compare-control { max-width: 300px; margin-inline: auto; min-width: 0; }
+.menu10-compare { position: relative; width: 100%; aspect-ratio: 520 / 1076; isolation: isolate; touch-action: pan-y; user-select: none; cursor: ew-resize; background: var(--lilas-fundo); }
+.menu10-compare-layer { position: absolute; inset: 0; overflow: hidden; background: var(--lilas-fundo); }
+.menu10-compare-layer img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.menu10-compare-divider { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--roxo); pointer-events: none; z-index: 2; }
+.menu10-compare-divider button { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); display: grid; place-items: center; width: 46px; height: 46px; border: 2px solid var(--roxo); border-radius: 50%; background: var(--branco); color: var(--roxo); cursor: ew-resize; pointer-events: auto; box-shadow: 0 0 0 4px rgb(128 0 187 / .12); padding: 0; }
+.menu10-compare-labels { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: var(--t-meta); font-weight: 600; color: var(--roxo); }
+.menu10-compare-hint { margin: 14px -12px 4px; font-size: .8125rem; line-height: 1.5; color: var(--texto-suave); text-align: center; }
+.menu10-compare-actions { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 3px; padding: 4px; margin-top: 12px; border: 1px solid var(--lilas-borda); border-radius: var(--pilula); background: var(--branco); }
+.menu10-compare-actions button { min-height: 44px; padding: 8px 4px; border: 0; border-radius: var(--pilula); background: transparent; color: var(--texto-suave); font: inherit; font-size: .8125rem; font-weight: 600; cursor: pointer; transition: background-color .18s, color .18s; }
+.menu10-compare-actions button:hover { color: var(--roxo); background: var(--lilas-fundo); }
+.menu10-compare-actions button[aria-pressed=true] { background: var(--roxo); color: var(--branco); }
+.menu10-compare-control :focus-visible { outline: 3px solid var(--roxo); outline-offset: 4px; }
+@media (min-width: 760px) {
+  .menu10-layouts { padding-block: 44px; }
+  .menu10-layouts-grid { grid-template-columns: minmax(0,1fr) minmax(0,1.1fr); grid-template-areas: "visual copy"; gap: clamp(40px,7vw,100px); max-width: 1120px; }
+  .menu10-layouts-visual { grid-area: visual; }
+  .menu10-layouts-copy { grid-area: copy; }
+  .menu10-layouts h2 { font-size: clamp(2.4rem,4vw,3.5rem); }
+  .menu10-compare-control { max-width: 280px; }
+}
+@media (max-width: 759px) {
+  .menu10-compare-control { max-width: 250px; }
+  .menu10-layouts-details { gap: 14px; }
+  .menu10-layouts-intro { margin-block: 16px 20px; }
+}
+@media (max-width: 999px) { .menu10-layouts-details { grid-template-columns: 1fr; } .menu10-layouts-details > div { padding: 18px; } }
+@media (prefers-reduced-motion: reduce) { .menu10-compare-actions button { transition: none; } }

@@ -1,0 +1,13 @@
+import { readFile, writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+const root = resolve(import.meta.dirname, '..');
+const source = await readFile(resolve(root, 'original/assets/js/particulas.js'), 'utf8');
+const encoded = source.match(/const bytes = atob\('([^']+)'\)/)?.[1];
+if (!encoded) throw new Error('Original logo points not found');
+const bytes = Buffer.from(encoded, 'base64');
+const points = [];
+for (let i = 0; i < bytes.length; i += 4) points.push([bytes.readUInt16BE(i) - 140, bytes.readUInt16BE(i + 2) - 12]);
+await writeFile(resolve(root, 'src/lib/hero-logo.json'), JSON.stringify({ width: 175, height: 193, points }) + '\n');
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 175 193"><g fill="#8000bb" fill-opacity=".8">${points.map(([x,y]) => `<rect x="${x-.75}" y="${y-.75}" width="1.5" height="1.5"/>`).join('')}</g></svg>`;
+await writeFile(resolve(root, 'public/images/hero-logo.svg'), svg);
+console.log(`Reused ${points.length} exact points from the original Menu10 logo.`);

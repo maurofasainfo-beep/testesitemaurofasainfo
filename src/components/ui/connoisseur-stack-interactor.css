@@ -1,0 +1,31 @@
+.connoisseur-stack { display: grid; grid-template-areas: "intro" "tabs" "media" "action"; gap: 18px; max-width: 1080px; margin-inline: auto; }
+.connoisseur-stack > * { min-width: 0; }
+.connoisseur-intro { grid-area: intro; }
+.connoisseur-tabs { grid-area: tabs; display: flex; gap: 22px; overflow-x: auto; padding: 5px 4px 10px; scroll-snap-type: x proximity; overscroll-behavior-x: contain; scrollbar-width: thin; }
+.connoisseur-tabs button { position: relative; display: flex; align-items: baseline; gap: 8px; flex: none; min-height: 48px; margin: 0; padding: 10px 12px 10px 0; border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: transparent; color: var(--texto-suave); text-align: left; font-family: var(--fonte); cursor: pointer; scroll-snap-align: start; }
+.connoisseur-tabs button[aria-selected="true"] { border-bottom-color: var(--roxo); color: var(--roxo); }
+.connoisseur-number { font-size: .75rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.connoisseur-name { display: inline-block; font-size: 1.125rem; font-weight: 650; letter-spacing: -.035em; line-height: 1.15; white-space: nowrap; }
+.connoisseur-panel { grid-area: media; align-self: center; }
+.connoisseur-phone { display: grid; place-items: center; width: 206px; max-width: 100%; aspect-ratio: 520 / 1076; margin-inline: auto; }
+.connoisseur-phone img { display: block; grid-area: 1 / 1; width: 100%; height: 100%; object-fit: contain; }
+.connoisseur-current { position: relative; z-index: 1; }
+.connoisseur-previous { position: relative; z-index: 0; }
+.connoisseur-mask { position: absolute; pointer-events: none; }
+.connoisseur-status { min-height: 22px; margin: 10px 0 0; font-size: var(--t-meta); line-height: 1.5; text-align: center; color: var(--texto-suave); }
+.connoisseur-action { grid-area: action; text-align: center; }
+.connoisseur-action .link-roxo { margin: 0; min-height: 44px; }
+.connoisseur-stack :focus-visible { outline: 3px solid var(--roxo); outline-offset: 4px; }
+@media (min-width: 760px) {
+  .connoisseur-stack { grid-template-columns: minmax(0,1fr) minmax(260px,.8fr); grid-template-rows: auto 1fr auto; grid-template-areas: "intro media" "tabs media" "action media"; column-gap: clamp(32px,5vw,80px); row-gap: 20px; }
+  .connoisseur-intro h2 { max-width: 18ch; }
+  .connoisseur-tabs { flex-direction: column; gap: 0; overflow: visible; padding: 0 4px; align-self: start; }
+  .connoisseur-tabs button { gap: 18px; padding-block: 10px; min-height: 53px; width: max-content; max-width: 100%; }
+  .connoisseur-number { font-size: var(--t-meta); }
+  .connoisseur-name { font-size: clamp(1.55rem,2.8vw,2.5rem); }
+  .connoisseur-phone { width: 250px; }
+  .connoisseur-action { text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .connoisseur-stack *, .connoisseur-stack *::before, .connoisseur-stack *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

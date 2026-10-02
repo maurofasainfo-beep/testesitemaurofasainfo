@@ -1,0 +1,24 @@
+/* No Preflight: the approved site already owns its reset, fonts and tokens.
+   Only scan reusable UI components; do not generate utilities from legacy HTML. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@source "../components/ui";
+
+@theme inline {
+  --color-background: var(--branco);
+  --color-foreground: var(--tinta);
+  --color-primary: var(--roxo);
+  --color-primary-foreground: var(--branco);
+  --color-secondary: var(--lilas);
+  --color-secondary-foreground: var(--tinta);
+  --color-muted: var(--lilas-fundo);
+  --color-muted-foreground: var(--texto-suave);
+  --color-accent: var(--lilas);
+  --color-accent-foreground: var(--roxo-forte);
+  --color-border: var(--lilas-borda);
+  --color-input: var(--lilas-borda);
+  --color-ring: var(--roxo);
+  --radius-lg: var(--raio);
+  --font-sans: var(--fonte);
+}

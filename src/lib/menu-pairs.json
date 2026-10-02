@@ -1,0 +1,92 @@
+[
+  {
+    "id": "pizzaria",
+    "label": "Pizzaria",
+    "layouts": [
+      {
+        "src": "/images/menu-pairs/pizzaria-1.webp",
+        "width": 520,
+        "height": 1076,
+        "alt": "Cardápio de pizzaria no iPhone, layout 1: categorias em imagens"
+      },
+      {
+        "src": "/images/menu-pairs/pizzaria-2.webp",
+        "width": 520,
+        "height": 1076,
+        "alt": "Cardápio de pizzaria no iPhone, layout 2: produtos em lista"
+      }
+    ]
+  },
+  {
+    "id": "hamburgueria",
+    "label": "Hamburgueria",
+    "layouts": [
+      {
+        "src": "/images/menu-pairs/hamburgueria-1.webp",
+        "width": 520,
+        "height": 1076,
+        "alt": "Cardápio de hamburgueria no iPhone, layout 1: categorias em imagens"
+      },
+      {
+        "src": "/images/menu-pairs/hamburgueria-2.webp",
+        "width": 520,
+        "height": 1076,
+        "alt": "Cardápio de hamburgueria no iPhone, layout 2: produtos em lista"
+      }
+    ]
+  },
+  {
+    "id": "marmitaria",
+    "label": "Marmitaria",
+    "layouts": [
+      {
+        "src": "/images/menu-pairs/marmitaria-1.webp",
+        "width": 520,
+        "height": 1076,
+        "alt": "Cardápio de marmitaria no iPhone, layout 1: categorias em imagens"
+      },
+      {
+        "src": "/images/menu-pairs/marmitaria-2.webp",
+        "width": 520,
+        "height": 1076,
+        "alt": "Cardápio de marmitaria no iPhone, layout 2: produtos em lista"
+      }
+    ]
+  },
+  {
+    "id": "sushi",
+    "label": "Sushi",
+    "layouts": [
+      {
+        "src": "/images/menu-pairs/sushi-1.webp",
+        "width": 520,
+        "height": 1076,
+        "alt": "Cardápio de sushi no iPhone, layout 1: categorias em imagens"
+      },
+      {
+        "src": "/images/menu-pairs/sushi-2.webp",
+        "width": 520,
+        "height": 1076,
+        "alt": "Cardápio de sushi no iPhone, layout 2: produtos em lista"
+      }
+    ]
+  },
+  {
+    "id": "pastel",
+    "label": "Pastelaria",
+    "layouts": [
+      {
+        "src": "/images/menu-pairs/pastel-1.webp",
+        "width": 520,
+        "height": 1076,
+        "alt": "Cardápio de pastelaria no iPhone, layout 1: categorias em imagens"
+      },
+      {
+        "src": "/images/menu-pairs/pastel-2.webp",
+        "width": 520,
+        "height": 1076,
+        "alt": "Cardápio de pastelaria no iPhone, layout 2: produtos em lista"
+      }
+    ]
+  }
+]
