@@ -22,7 +22,7 @@ window.EMPRESA = {
 
   // WhatsApp só com números: 55 + DDD + número.
   whatsapp: "5515996981803",
-  mensagemWhatsapp: "Olá! Vim pelo site e quero uma demonstração do Menu10.",
+  mensagemWhatsapp: "Olá! Vim pelo site do Menu10 e quero agendar uma demonstração para balcão e delivery.",
   // Depois que o visitante escolhe um tipo de negócio na vitrine, a mensagem leva a escolha.
   // {negocio} vira o data-negocio da aba (ex.: "a minha marmitaria").
   mensagemWhatsappNegocio: "Olá! Vim pelo site e quero uma demonstração do Menu10 para {negocio}.",
@@ -116,7 +116,6 @@ window.EMPRESA = {
   const linkWhats = (texto) => E.whatsapp && `https://wa.me/${E.whatsapp}?text=${encodeURIComponent(texto || "")}`;
 
   const links = {
-    whatsapp: linkWhats(E.mensagemWhatsapp),
     maps: alvo && `https://www.google.com/maps/search/?api=1&query=${alvo}`,
     waze: alvo && (E.coordenadas
       ? `https://waze.com/ul?ll=${alvo}&navigate=yes`
@@ -132,7 +131,9 @@ window.EMPRESA = {
     if (valor) el.textContent = valor;
   });
   document.querySelectorAll("[data-link]").forEach((el) => {
-    const href = links[el.dataset.link];
+    const href = el.dataset.link === "whatsapp"
+      ? linkWhats(el.dataset.whatsappMessage || E.mensagemWhatsapp)
+      : links[el.dataset.link];
     if (href) el.href = href;
   });
   // Campos opcionais vazios somem do site
@@ -151,7 +152,7 @@ window.EMPRESA = {
     const { negocio, frase } = e.detail || {};
     if (E.mensagemWhatsappNegocio && negocio) {
       const href = linkWhats(E.mensagemWhatsappNegocio.replace("{negocio}", negocio));
-      if (href) document.querySelectorAll('[data-link="whatsapp"]').forEach((a) => { a.href = href; });
+      if (href) document.querySelectorAll('[data-whatsapp-intent="menu"]').forEach((a) => { a.href = href; });
     }
     if (fechamentoNegocio && frase && fechamentoNegocio.textContent !== frase) {
       fechamentoNegocio.textContent = frase;

@@ -4,28 +4,30 @@ import { MediaSelector } from "./MediaSelector";
 import { Comparison } from "./Comparison";
 import { MenuShowcase } from "@/components/ui/menu-showcase";
 import { SupportMap } from "@/components/marketing/SupportMap";
+import { whatsappHref, whatsappMessages, type WhatsAppIntent } from "@/config/whatsapp";
 import "@/app/sections.css";
 
-function WhatsApp({ children, className = "botao botao-roxo" }: { children: ReactNode; className?: string }) {
-  return <a href="https://wa.me/5515996981803" data-link="whatsapp" target="_blank" rel="noopener" className={className}>{children}</a>;
+function WhatsApp({ children, className = "botao botao-roxo", intent = "demo" }: { children: ReactNode; className?: string; intent?: WhatsAppIntent }) {
+  return <a href={whatsappHref(intent)} data-link="whatsapp" data-whatsapp-intent={intent}
+    data-whatsapp-message={whatsappMessages[intent]} target="_blank" rel="noopener" className={className}>{children}</a>;
 }
 export function Menus() {
   return <section id="cardapios" className="reform-section reform-menus" aria-labelledby="reform-menu-title"><div className="container">
-    <MenuShowcase action={<WhatsApp className="link-roxo">Quero o meu assim</WhatsApp>} />
+    <MenuShowcase action={<WhatsApp className="link-roxo" intent="menu">Quero o meu assim</WhatsApp>} />
   </div></section>;
 }
 export function Pricing() {
   return <section id="diferenciais" className="reform-section reform-pricing" aria-labelledby="reform-price-title"><div className="container">
     <h2 id="reform-price-title">Cada pedido é seu.<br /><em>Sem comissão.</em></h2>
     <p>Você paga uma mensalidade, não uma porcentagem das suas vendas. A partir de R$ 200/mês. O valor depende do número de computadores e dos módulos que você usa.</p>
-    <WhatsApp>Consultar valores no WhatsApp</WhatsApp>
+    <WhatsApp intent="pricing">Consultar valores no WhatsApp</WhatsApp>
   </div></section>;
 }
 export { Comparison };
 export function Reports() {
-  return <section id="gestao" className="reform-section reform-reports" aria-labelledby="reform-report-title"><div className="container">
+  return <section id="gestao" className="reform-section reform-reports" aria-labelledby="reform-report-title"><span id="resultado" className="visualmente-oculto" aria-hidden="true" /><div className="container">
     <MediaSelector id="report" kind="reports" items={media.reports} label="Telas do relatório" intro={<h2 id="reform-report-title">No fim do dia, você sabe <em>exatamente como foi.</em></h2>}
-      action={<WhatsApp>Quero ver os meus números</WhatsApp>} />
+      action={<WhatsApp intent="reports">Quero ver os meus números</WhatsApp>} />
   </div></section>;
 }
 export function Support() {

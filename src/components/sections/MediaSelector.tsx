@@ -2,7 +2,8 @@
 
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 
-export type MediaItem = { id: string; label: string; src: string; width: number; height: number; alt: string; caption?: string };
+export type MediaItem = { id: string; label: string; src: string; width: number; height: number; alt: string; caption?: string;
+  preview?: string; previewWidth?: number; previewHeight?: number; previewAlt?: string; previewCrop?: boolean; visibleHeight?: number };
 export function MediaSelector({ id, label, items, kind, intro, action }: {
   id: string; label: string; items: MediaItem[]; kind: "menus" | "reports"; intro: ReactNode; action: ReactNode;
 }) {
@@ -80,8 +81,12 @@ export function MediaSelector({ id, label, items, kind, intro, action }: {
             const dx = to.clientX - from.x, dy = to.clientY - from.y;
             if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) void select((activeRef.current + (dx < 0 ? 1 : -1) + items.length) % items.length);
           }}>
-          <div className="reform-media-stack">{previous !== null && <img className="reform-media-old" ref={outgoing} src={items[previous].src} width={items[previous].width} height={items[previous].height} alt="" aria-hidden="true" decoding="async" loading="lazy" />}
-          <img key={item.id} ref={incoming} className="reform-media-current" src={item.src} width={item.width} height={item.height} alt={item.alt} decoding="async" loading="lazy" />
+          <div className="reform-media-stack">{previous !== null && <img className="reform-media-old" ref={outgoing} src={items[previous].preview ?? items[previous].src}
+            width={items[previous].previewWidth ?? items[previous].width} height={items[previous].previewHeight ?? items[previous].height}
+            alt="" aria-hidden="true" decoding="async" loading="lazy" />}
+          <img key={item.id} ref={incoming} className={`reform-media-current${item.previewCrop ? " is-focused" : ""}`}
+            src={item.preview ?? item.src} width={item.previewWidth ?? item.width} height={item.previewHeight ?? item.height}
+            alt={item.previewAlt ?? item.alt} decoding="async" loading="lazy" />
           </div>
           {kind === "reports" && <span className="reform-report-expand" aria-hidden="true">Ampliar tela</span>}
         </Frame>
@@ -115,7 +120,9 @@ export function ReportDialog({ item, onClose, accessibleLabel, regionLabel }: { 
       <button type="button" onClick={close} autoFocus>Fechar</button>
     </div>
     <div className="reform-report-dialog-scroll" tabIndex={0} role="region" aria-label={regionLabel ?? "Imagem do relatório; no tamanho original, role para explorar os detalhes"}>
-      <img className={actualSize ? "is-original-size" : undefined} src={item.src} width={item.width} height={item.height} alt={item.alt} decoding="async" loading="lazy" />
+      {item.visibleHeight ? <div className="reform-report-visible-crop" style={{ width: actualSize ? item.width : "100%", aspectRatio: `${item.width} / ${item.visibleHeight}` }}>
+        <img className={actualSize ? "is-original-size" : undefined} src={item.src} width={item.width} height={item.height} alt={item.alt} decoding="async" loading="lazy" />
+      </div> : <img className={actualSize ? "is-original-size" : undefined} src={item.src} width={item.width} height={item.height} alt={item.alt} decoding="async" loading="lazy" />}
     </div>
     <p>Use “Tamanho original” para ler os detalhes e role pela imagem.</p>
   </dialog>;

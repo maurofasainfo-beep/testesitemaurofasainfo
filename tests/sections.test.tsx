@@ -10,15 +10,16 @@ const flush = async () => { await act(async () => { for (let i = 0; i < 8; i++) 
 beforeEach(() => { vi.clearAllMocks(); });
 
 describe("Reports and motion preferences", () => {
-  it("restores the original sales and reviews screens and operates with the keyboard", async () => {
+  it("keeps the four real panels together and operates with the keyboard", async () => {
     render(<Reports />);
     const tabs = screen.getAllByRole("tab"); expect(tabs).toHaveLength(media.reports.length);
     act(() => tabs[0].focus()); fireEvent.keyDown(tabs[0], {key:"ArrowRight"}); await flush();
     expect(tabs[1].getAttribute("aria-selected")).toBe("true");
     expect(screen.getByRole("tabpanel").getAttribute("aria-labelledby")).toBe(tabs[1].id);
-    expect(document.querySelector<HTMLImageElement>(".reform-media-current")!.src).toContain("relatorio-avaliacoes.webp");
-    expect(tabs.map(tab => tab.textContent)).toEqual(["Vendas", "Avaliações"]);
-    media.reports.forEach(item => expect(readFileSync(`public${item.src}`)).toEqual(readFileSync(`original${item.src}`)));
+    expect(document.querySelector<HTMLImageElement>(".reform-media-current")!.src).toContain("painel-dre-recorte.webp");
+    expect(tabs.map(tab => tab.textContent)).toEqual(["Vendas", "Financeiro", "Recompra", "Avaliações"]);
+    [media.reports[0], media.reports[3]].forEach(item => expect(readFileSync(`public${item.src}`)).toEqual(readFileSync(`original${item.src}`)));
+    media.reports.slice(1, 3).forEach(item => expect(readFileSync(`public${item.src}`).length).toBeGreaterThan(0));
   });
   it("opens either original screen, restores focus and safely closes then reopens", async () => {
     render(<Reports />);
@@ -57,7 +58,8 @@ describe("Reports and motion preferences", () => {
 describe("Reform boundaries and content", () => {
   it("keeps the five sections in order and removes the redundant closing, map and decorative icons", () => {
     const doc = new DOMParser().parseFromString(renderToString(<Home />), "text/html");
-    expect([...doc.querySelectorAll("main > section")].map(el=>el.id)).toEqual(["inicio","clientes","numeros","cardapios","diferenciais","caminho-do-pedido","recursos","integracoes","resultado","gestao","como-comecar","faq","suporte"]);
+    expect([...doc.querySelectorAll("main > section")].map(el=>el.id)).toEqual(["inicio","clientes","numeros","cardapios","diferenciais","caminho-do-pedido","recursos","integracoes","gestao","como-comecar","faq","suporte"]);
+    expect(doc.getElementById("resultado")).not.toBeNull();
     expect(doc.querySelector(".fechamento,.hex,.comparar,.painel-mais,.zoom")).toBeNull();
     expect(doc.querySelectorAll('iframe[title="Mapa com a localização da Fasa Informática em Cerquilho"]')).toHaveLength(1);
     expect(doc.querySelectorAll(".reform-section use")).toHaveLength(2);

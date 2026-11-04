@@ -3,6 +3,7 @@ import { act, fireEvent, render, screen, waitFor, within } from "@testing-librar
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { Navbar1 } from "@/components/ui/navbar-1";
 import { navigationItems } from "@/config/navigation";
+import { whatsappHref } from "@/config/whatsapp";
 
 beforeEach(() => {
   vi.mocked(window.matchMedia).mockImplementation(() => ({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() }) as unknown as MediaQueryList);
@@ -15,7 +16,7 @@ it("renders real section links and preserves the configured WhatsApp in the mobi
   const nav = screen.getByRole("navigation", { name: "Principal" });
   expect(within(nav).getAllByRole("link").map(a => a.getAttribute("href"))).toEqual(navigationItems.map(item => item.href));
   const cta = screen.getByRole("link", { name: "Pedir demonstração" });
-  expect(cta.getAttribute("href")).toBe("https://wa.me/5515996981803");
+  expect(cta.getAttribute("href")).toBe(whatsappHref());
   cta.setAttribute("href", "https://wa.me/5515996981803?text=configurada");
   fireEvent.click(screen.getByRole("button", { name: "Abrir menu" }));
   const modal = screen.getByRole("dialog");

@@ -4,10 +4,11 @@ import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, useSy
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { navigationItems } from "@/config/navigation";
+import { whatsappHref } from "@/config/whatsapp";
 import "@/app/component-utilities.css";
 import "./navbar-1.css";
 
-const WHATSAPP = "https://wa.me/5515996981803";
+const WHATSAPP = whatsappHref();
 const reducedQuery = "(prefers-reduced-motion: reduce)";
 const subscribeMotion = (notify: () => void) => {
   const media = window.matchMedia(reducedQuery);

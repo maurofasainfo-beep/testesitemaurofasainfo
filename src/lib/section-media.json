@@ -48,8 +48,36 @@
       "src": "/assets/img/relatorio-vendas.webp",
       "width": 1600,
       "height": 959,
-      "alt": "Tela real de relatórios do Menu10, com vendas por dia, modalidade, canal e horário, bairros e mapa de calor.",
-      "caption": "Veja o que vendeu, quando e de quais bairros vêm os pedidos."
+      "alt": "Relatório de vendas do Menu10 com dias, modalidades, canais e horários de maior movimento.",
+      "caption": "Veja em quais dias e horários a operação mais vende.",
+      "previewCrop": true,
+      "visibleHeight": 650
+    },
+    {
+      "id": "financeiro",
+      "label": "Financeiro",
+      "src": "/images/evidence/painel-dre.webp",
+      "width": 1014,
+      "height": 652,
+      "alt": "DRE do Menu10 com receitas, despesas e resultado do período.",
+      "preview": "/images/evidence/painel-dre-recorte.webp",
+      "previewWidth": 962,
+      "previewHeight": 340,
+      "previewAlt": "Recorte do DRE do Menu10 com despesas e resultado do período.",
+      "caption": "Receitas, despesas e resultado do período no DRE."
+    },
+    {
+      "id": "recompra",
+      "label": "Recompra",
+      "src": "/images/evidence/painel-recompra.webp",
+      "width": 1600,
+      "height": 829,
+      "alt": "Painel de recompra do Menu10 com tempo médio para voltar e clientes em risco.",
+      "preview": "/images/evidence/painel-recompra-recorte.webp",
+      "previewWidth": 800,
+      "previewHeight": 525,
+      "previewAlt": "Recorte do painel de recompra do Menu10.",
+      "caption": "Veja o tempo médio para voltar e os clientes em risco."
     },
     {
       "id": "avaliacoes",

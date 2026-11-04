@@ -10,8 +10,8 @@ const inter = localFont({ src: "../../node_modules/@fontsource-variable/inter/fi
 
 export const metadata: Metadata = {
   title: original.title,
-  description: "Menu10: cardápio digital, Caixa, KDS, Retaguarda e relatórios em um só sistema. Integrações com iFood, 99Food, aiqfome e WhatsApp. Sem comissão por pedido.",
-  openGraph: { title: "Menu10 — Seu delivery ganha forma", description: "Cardápio digital sem comissão por pedido. Cozinha, entregas, iFood, WhatsApp e nota fiscal num sistema só. Suporte em Cerquilho - SP.", locale: "pt_BR", type: "website" },
+  description: "Menu10 reúne pedidos do balcão e do delivery no mesmo sistema. Caixa, cardápio digital, cozinha, entregas e relatórios, sem comissão por pedido.",
+  openGraph: { title: "Menu10 — Balcão e delivery no mesmo sistema", description: "Pedidos locais e online no mesmo caixa, com cardápio digital, cozinha, entregas e relatórios. Sem comissão por pedido.", locale: "pt_BR", type: "website" },
 };
 export const viewport: Viewport = { themeColor: "#ffffff", colorScheme: "light" };
 export default function Layout({ children }: { children: React.ReactNode }) {

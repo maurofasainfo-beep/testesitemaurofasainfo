@@ -6,7 +6,6 @@
   const linkWhats = (texto) => E.whatsapp && `https://wa.me/${E.whatsapp}?text=${encodeURIComponent(texto || "")}`;
 
   const links = {
-    whatsapp: linkWhats(E.mensagemWhatsapp),
     maps: alvo && `https://www.google.com/maps/search/?api=1&query=${alvo}`,
     waze: alvo && (E.coordenadas
       ? `https://waze.com/ul?ll=${alvo}&navigate=yes`
@@ -22,7 +21,9 @@
     if (valor) el.textContent = valor;
   });
   document.querySelectorAll("[data-link]").forEach((el) => {
-    const href = links[el.dataset.link];
+    const href = el.dataset.link === "whatsapp"
+      ? linkWhats(el.dataset.whatsappMessage || E.mensagemWhatsapp)
+      : links[el.dataset.link];
     if (href) el.href = href;
   });
   // Campos opcionais vazios somem do site
@@ -41,7 +42,7 @@
     const { negocio, frase } = e.detail || {};
     if (E.mensagemWhatsappNegocio && negocio) {
       const href = linkWhats(E.mensagemWhatsappNegocio.replace("{negocio}", negocio));
-      if (href) document.querySelectorAll('[data-link="whatsapp"]').forEach((a) => { a.href = href; });
+      if (href) document.querySelectorAll('[data-whatsapp-intent="menu"]').forEach((a) => { a.href = href; });
     }
     if (fechamentoNegocio && frase && fechamentoNegocio.textContent !== frase) {
       fechamentoNegocio.textContent = frase;

@@ -929,6 +929,7 @@ em { font-style: normal; color: var(--roxo); }
 .abertura h1 .linha { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
 .abertura h1 .linha > span { display: inline-block; animation: linha-sobe 1.4s cubic-bezier(.22, 1, .36, 1) .15s both; }
 .abertura h1 .linha + .linha > span { animation-delay: .3s; }
+.abertura h1 .linha:nth-child(3) > span { animation-delay: .45s; }
 .abertura-sub { animation: surgir-leve 1.2s cubic-bezier(.22, 1, .36, 1) .6s both; }
 .abertura-acoes { animation: surgir-leve 1.2s cubic-bezier(.22, 1, .36, 1) .78s both; }
 .dica, .descer { animation: esmaecer 1.4s ease-out 1.2s both; }

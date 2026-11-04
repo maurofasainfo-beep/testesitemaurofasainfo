@@ -18,6 +18,10 @@
 .menu10-faq-answer-wrap { overflow: hidden; }
 .menu10-faq-answer { margin: 0; padding: 0 48px 20px; color: var(--texto); font-size: var(--t-rotulo); line-height: 1.65; overflow-wrap: anywhere; white-space: pre-line; }
 .menu10-faq :focus-visible { outline: 3px solid var(--roxo); outline-offset: 3px; }
+@media (max-width: 759px) {
+  .menu10-faq-tabs { width: 100%; flex-wrap: wrap; justify-content: center; overflow: visible; }
+  .menu10-faq-tabs button { padding-inline: 12px; font-size: .82rem; }
+}
 @media (min-width: 760px) {
   .menu10-faq { padding-block: 44px; }
   .menu10-faq-tabs { flex-wrap: wrap; justify-content: center; overflow: visible; }

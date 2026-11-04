@@ -22,7 +22,7 @@ window.EMPRESA = {
 
   // WhatsApp só com números: 55 + DDD + número.
   whatsapp: "5515996981803",
-  mensagemWhatsapp: "Olá! Vim pelo site e quero uma demonstração do Menu10.",
+  mensagemWhatsapp: "Olá! Vim pelo site do Menu10 e quero agendar uma demonstração para balcão e delivery.",
   // Depois que o visitante escolhe um tipo de negócio na vitrine, a mensagem leva a escolha.
   // {negocio} vira o data-negocio da aba (ex.: "a minha marmitaria").
   mensagemWhatsappNegocio: "Olá! Vim pelo site e quero uma demonstração do Menu10 para {negocio}.",

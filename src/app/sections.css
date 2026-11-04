@@ -14,6 +14,7 @@
 .reform-media-frame { position: relative; isolation: isolate; margin-inline: auto; touch-action: pan-y; }
 .reform-media-stack { display: grid; place-items: center; width: 100%; height: 100%; }
 .reform-media-frame img { grid-area: 1 / 1; width: 100%; height: 100%; object-fit: contain; min-height: 0; min-width: 0; }
+.reform-media-frame img.is-focused { object-fit: cover; object-position: top; }
 .reform-media-current { z-index: 1; }
 .reform-media-old { z-index: 0; }
 .reform-media-status { font-size: var(--t-meta); min-height: 24px; text-align: center; color: var(--texto-suave); }
@@ -59,6 +60,8 @@
 .reform-report-dialog-scroll { max-height: calc(100dvh - 200px); overflow: auto; overscroll-behavior: contain; border: 1px solid var(--lilas-borda); border-radius: 8px; }
 .reform-report-dialog-scroll img { display: block; width: 100%; max-width: 100%; height: auto; }
 .reform-report-dialog-scroll img.is-original-size { width: auto; max-width: none; }
+.reform-report-visible-crop { max-width: none; overflow: hidden; }
+.reform-report-visible-crop img { width: 100%; max-width: none; height: auto; }
 .reform-report-dialog > p { margin: 10px 0 0; color: var(--texto-suave); font-size: var(--t-meta); }
 @media (max-width: 759px) {
   .reform-selector--reports .reform-media-frame { height: auto; aspect-ratio: 1487 / 948; }
