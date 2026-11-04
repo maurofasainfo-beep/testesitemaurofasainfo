@@ -6,8 +6,9 @@ import { Navbar1 } from "@/components/ui/navbar-1";
 import { ParticleMenu } from "@/components/ParticleMenu";
 import { OriginalInteractions } from "@/components/OriginalInteractions";
 import { Menus, Pricing, Reports, Support } from "@/components/sections/Sections";
-import { Numbers, OrderJourney, GettingStarted } from "@/components/marketing/HomeSections";
-import { Operations } from "@/components/marketing/ResourceSections";
+import { Numbers, GettingStarted } from "@/components/marketing/HomeSections";
+import { PlatformStory } from "@/components/marketing/PlatformStory";
+import { ProductEvidence } from "@/components/marketing/ProductEvidence";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export default function Home() {
@@ -23,8 +24,8 @@ export default function Home() {
         </section>
       : section.id === "cardapios" ? <Menus key="cardapios" />
       : section.id === "diferenciais" ? <Pricing key="diferenciais" />
-      : section.id === "recursos" ? <Fragment key="recursos"><OrderJourney /><Operations /></Fragment>
-      : section.id === "gestao" ? <Reports key="gestao" />
+      : section.id === "recursos" ? <PlatformStory key="recursos" />
+      : section.id === "gestao" ? <Fragment key="gestao"><ProductEvidence /><Reports /></Fragment>
       : section.id === "suporte" ? <Fragment key="suporte"><GettingStarted /><FAQ id="faq" {...faqConfig} /><Support /></Fragment>
       : section.id === "clientes" ? <Fragment key="clientes"><section id={section.id} className={section.className} aria-labelledby={section.labelledBy || undefined} dangerouslySetInnerHTML={{ __html: section.html }} /><Numbers /></Fragment>
       : section.className === "fechamento" ? null

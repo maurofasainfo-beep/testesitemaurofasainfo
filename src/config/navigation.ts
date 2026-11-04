@@ -2,6 +2,7 @@
 export const navigationItems = [
   { label: "Cardápios", href: "#cardapios" },
   { label: "Recursos", href: "/#recursos" },
+  { label: "Integrações", href: "/#integracoes" },
   { label: "Relatórios", href: "#gestao" },
   { label: "Perguntas", href: "#faq" },
   { label: "Suporte", href: "#suporte" },

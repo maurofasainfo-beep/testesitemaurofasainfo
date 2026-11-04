@@ -57,7 +57,7 @@ describe("Reports and motion preferences", () => {
 describe("Reform boundaries and content", () => {
   it("keeps the five sections in order and removes the redundant closing, map and decorative icons", () => {
     const doc = new DOMParser().parseFromString(renderToString(<Home />), "text/html");
-    expect([...doc.querySelectorAll("main > section")].map(el=>el.id)).toEqual(["inicio","clientes","numeros","cardapios","diferenciais","caminho-do-pedido","recursos","gestao","como-comecar","faq","suporte"]);
+    expect([...doc.querySelectorAll("main > section")].map(el=>el.id)).toEqual(["inicio","clientes","numeros","cardapios","diferenciais","caminho-do-pedido","recursos","integracoes","resultado","gestao","como-comecar","faq","suporte"]);
     expect(doc.querySelector(".fechamento,.hex,.comparar,.painel-mais,.zoom")).toBeNull();
     expect(doc.querySelectorAll('iframe[title="Mapa com a localização da Fasa Informática em Cerquilho"]')).toHaveLength(1);
     expect(doc.querySelectorAll(".reform-section use")).toHaveLength(2);

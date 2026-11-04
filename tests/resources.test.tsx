@@ -2,8 +2,8 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderToString } from "react-dom/server";
 import { beforeEach, afterEach, expect, it, vi } from "vitest";
-import { Operations } from "@/components/marketing/ResourceSections";
-import { Numbers, OrderJourney, orderSteps } from "@/components/marketing/HomeSections";
+import { PlatformStory } from "@/components/marketing/PlatformStory";
+import { Numbers } from "@/components/marketing/HomeSections";
 import { SupportMap } from "@/components/marketing/SupportMap";
 import sitemap from "@/app/sitemap";
 import { Navbar1 } from "@/components/ui/navbar-1";
@@ -22,13 +22,13 @@ it("renders the real final statistics into server HTML without JavaScript", () =
 });
 
 it("opens either system screenshot by keyboard, restores focus and supports original size", async () => {
-  const user = userEvent.setup(); render(<Operations />);
+  const user = userEvent.setup(); render(<PlatformStory />);
   expect(screen.queryByRole("switch")).toBeNull();
   for (const label of ["Caixa", "Retaguarda"]) {
     const trigger = screen.getByRole("button", { name: `Ampliar tela ${label === "Caixa" ? "do Caixa" : "da Retaguarda"}` });
     act(() => trigger.focus()); await user.keyboard("{Enter}");
-    const dialog = screen.getByRole("dialog", { name: `Tela ${label === "Caixa" ? "do Caixa" : "da Retaguarda"} do Menu10 ampliada` });
-    expect(within(dialog).getByRole("img").getAttribute("src")).toContain(label.toLowerCase() + "-menu10.webp");
+    const dialog = screen.getByRole("dialog", { name: new RegExp(`Tela (?:de demonstração|real) ${label === "Caixa" ? "do Caixa" : "da Retaguarda"} do Menu10.*ampliada`) });
+    expect(within(dialog).getByRole("img").getAttribute("src")).toContain(label === "Caixa" ? "caixa-pedidos-menu10.webp" : "retaguarda-menu10.webp");
     fireEvent.click(within(dialog).getByRole("button", { name: "Tamanho original" }));
     expect(within(dialog).getByRole("img").classList.contains("is-original-size")).toBe(true);
     fireEvent(dialog, new Event("cancel", { cancelable: true }));
@@ -36,7 +36,7 @@ it("opens either system screenshot by keyboard, restores focus and supports orig
     expect(document.activeElement).toBe(trigger);
     expect(document.body.style.overflow).toBe("");
   }
-  expect(document.querySelector(".stacking-cards")?.getAttribute("data-stacking")).toBe("static");
+  expect(document.querySelector(".stacking-cards")).toBeNull();
 });
 
 it("points Resources at its home anchor and closes the mobile menu", () => {
@@ -53,29 +53,24 @@ it("points Resources at its home anchor and closes the mobile menu", () => {
 });
 
 it("provides the two subanchors in one section and removes the resource sitemap entry", () => {
-  const doc = new DOMParser().parseFromString(renderToString(<Operations />), "text/html");
-  expect(doc.querySelectorAll("section")).toHaveLength(1);
+  const doc = new DOMParser().parseFromString(renderToString(<PlatformStory />), "text/html");
+  expect(doc.querySelectorAll("section")).toHaveLength(3);
   for (const id of ["caixa", "retaguarda"]) expect(doc.getElementById(id)).not.toBeNull();
-  const images = [...doc.querySelectorAll("img")];
-  expect(images.map(img => [img.width, img.height])).toEqual([[1920, 953], [1920, 1042]]);
+  const images = [...doc.querySelectorAll(".platform-screen-media img")];
+  expect(images.map(img => [img.width, img.height])).toEqual([[1180, 500], [1920, 1042]]);
   images.forEach(img => { expect(img.getAttribute("loading")).toBe("lazy"); expect(img.getAttribute("decoding")).toBe("async"); });
-  expect(doc.querySelectorAll("h2")).toHaveLength(1);
-  expect(doc.querySelectorAll("h3")).toHaveLength(2);
+  expect(doc.querySelectorAll("h2")).toHaveLength(3);
+  expect(doc.querySelectorAll(".platform-screen-copy h3")).toHaveLength(2);
   expect(doc.querySelector('a[href^="/recursos"]')).toBeNull();
   expect(sitemap().some(item => item.url.endsWith("/recursos"))).toBe(false);
 });
 
-it("keeps every order step and supports arrows and Home/End with reduced motion", () => {
-  const scrollIntoView = vi.fn(); HTMLElement.prototype.scrollIntoView = scrollIntoView;
-  render(<OrderJourney />);
-  const cards = screen.getAllByRole("group"); expect(cards).toHaveLength(5);
-  orderSteps.forEach(([title, text], index) => { expect(cards[index].textContent).toContain(title); expect(cards[index].textContent).toContain(text); });
-  act(() => cards[0].focus()); fireEvent.keyDown(cards[0], { key: "ArrowRight" }); expect(document.activeElement).toBe(cards[1]);
-  fireEvent.keyDown(cards[1], { key: "End" }); expect(document.activeElement).toBe(cards[4]);
-  fireEvent.keyDown(cards[4], { key: "Home" }); expect(document.activeElement).toBe(cards[0]);
-  expect(scrollIntoView).toHaveBeenLastCalledWith({ block: "nearest", inline: "center", behavior: "auto" });
-  expect(screen.getByRole("region", { name: "Caminho do pedido, cinco etapas" }).getAttribute("data-motion")).toBe("static");
-  expect(screen.getByRole("link", { name: "Ver os relatórios" }).getAttribute("href")).toBe("#gestao");
+it("shows real incoming platforms, order stages and the integration modules", () => {
+  render(<PlatformStory />);
+  expect([...document.querySelectorAll(".platform-source img")].map(el=>el.getAttribute("alt"))).toEqual(["iFood","99Food","aiqfome"]);
+  expect(document.querySelectorAll(".platform-stages li")).toHaveLength(5);
+  expect(screen.getByRole("link", { name: /Ver os relatórios/ }).getAttribute("href")).toBe("#gestao");
+  for (const term of ["KDS", "Mercado Pago", "Correios", "Jadlog", "Melhor Envio", "Stone", "certificado digital", "A operação local continua funcionando"]) expect(document.body.textContent).toContain(term);
 });
 
 it("keeps directions available after map load and restores the fallback on an error", () => {
