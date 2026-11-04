@@ -17,7 +17,7 @@ Roxo `#8000bb`, tinta `#2a1a3a`, lilás `#faf6fd`, branco e quase preto arroxead
 
 ## Movimento
 
-A hero e os cardápios preservam suas animações. Na parte nova, a linha das plataformas se desenha ao entrar na tela e as capturas chegam com um deslocamento curto. Não há autoplay em loop nem bloqueio da rolagem. `prefers-reduced-motion` apresenta o estado final sem deslocamento.
+A hero e os cardápios preservam suas animações. Na parte nova, as plataformas chegam em sequência ao Menu10, a linha de conexão se desenha e os destinos aparecem depois; as capturas chegam com um deslocamento curto. Não há autoplay em loop nem bloqueio da rolagem. `prefers-reduced-motion` apresenta o estado final sem deslocamento.
 
 ## Limites do material
 
