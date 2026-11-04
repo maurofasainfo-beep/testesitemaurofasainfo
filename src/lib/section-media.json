@@ -54,19 +54,6 @@
       "visibleHeight": 650
     },
     {
-      "id": "financeiro",
-      "label": "Financeiro",
-      "src": "/images/evidence/painel-dre.webp",
-      "width": 1014,
-      "height": 652,
-      "alt": "DRE do Menu10 com receitas, despesas e resultado do período.",
-      "preview": "/images/evidence/painel-dre-recorte.webp",
-      "previewWidth": 962,
-      "previewHeight": 340,
-      "previewAlt": "Recorte do DRE do Menu10 com despesas e resultado do período.",
-      "caption": "Receitas, despesas e resultado do período no DRE."
-    },
-    {
       "id": "recompra",
       "label": "Recompra",
       "src": "/images/evidence/painel-recompra.webp",

@@ -10,16 +10,16 @@ const flush = async () => { await act(async () => { for (let i = 0; i < 8; i++) 
 beforeEach(() => { vi.clearAllMocks(); });
 
 describe("Reports and motion preferences", () => {
-  it("keeps the four real panels together and operates with the keyboard", async () => {
+  it("keeps the three report panels together and operates with the keyboard", async () => {
     render(<Reports />);
     const tabs = screen.getAllByRole("tab"); expect(tabs).toHaveLength(media.reports.length);
     act(() => tabs[0].focus()); fireEvent.keyDown(tabs[0], {key:"ArrowRight"}); await flush();
     expect(tabs[1].getAttribute("aria-selected")).toBe("true");
     expect(screen.getByRole("tabpanel").getAttribute("aria-labelledby")).toBe(tabs[1].id);
-    expect(document.querySelector<HTMLImageElement>(".reform-media-current")!.src).toContain("painel-dre-recorte.webp");
-    expect(tabs.map(tab => tab.textContent)).toEqual(["Vendas", "Financeiro", "Recompra", "Avaliações"]);
-    [media.reports[0], media.reports[3]].forEach(item => expect(readFileSync(`public${item.src}`)).toEqual(readFileSync(`original${item.src}`)));
-    media.reports.slice(1, 3).forEach(item => expect(readFileSync(`public${item.src}`).length).toBeGreaterThan(0));
+    expect(document.querySelector<HTMLImageElement>(".reform-media-current")!.src).toContain("painel-recompra-recorte.webp");
+    expect(tabs.map(tab => tab.textContent)).toEqual(["Vendas", "Recompra", "Avaliações"]);
+    [media.reports[0], media.reports[2]].forEach(item => expect(readFileSync(`public${item.src}`)).toEqual(readFileSync(`original${item.src}`)));
+    expect(readFileSync(`public${media.reports[1].src}`).length).toBeGreaterThan(0);
   });
   it("opens either original screen, restores focus and safely closes then reopens", async () => {
     render(<Reports />);

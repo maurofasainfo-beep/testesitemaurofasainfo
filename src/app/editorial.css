@@ -1,14 +1,26 @@
 /* Editorial rhythm after the menu showcase. Component-specific styles live beside components. */
 body #diferenciais { background: var(--roxo); }
-body #diferenciais > .container { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(260px,.9fr); align-items: center; gap: 16px clamp(28px,6vw,96px); }
-body #diferenciais h2 { grid-row: span 2; font-size: clamp(2.7rem,5vw,5.2rem); line-height: 1.04; letter-spacing: -.038em; }
-body #diferenciais p { margin: 0; max-width: 42ch; font-size: 1.08rem; }
+body #diferenciais > .container { display: grid; grid-template-columns: minmax(0,.82fr) minmax(0,1fr); align-items: center; gap: clamp(32px,7vw,112px); text-align: left; }
+body #diferenciais .pricing-statement { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+body #diferenciais .pricing-statement span { font-size: clamp(8rem,18vw,15rem); font-weight: 760; letter-spacing: -.04em; line-height: .82; font-variant-numeric: tabular-nums; }
+body #diferenciais .pricing-statement strong { margin-top: 18px; color: #f2d8ff; font-size: clamp(1rem,1.5vw,1.35rem); font-weight: 600; }
+body #diferenciais h2 { font-size: clamp(2.6rem,4.5vw,4.5rem); line-height: 1.04; letter-spacing: -.038em; }
+body #diferenciais p { margin: 24px 0 28px; max-width: 42ch; font-size: 1.08rem; }
 body #diferenciais .botao { justify-self: start; }
 
-body #gestao { background: var(--lilas-fundo); padding-block: clamp(56px,6vw,88px); }
-body #gestao .reform-selector--reports { grid-template-columns: minmax(0,1fr); grid-template-areas: "intro" "tabs" "media" "action"; gap: 16px; }
-body #gestao .reform-selector-action { justify-self: start; }
-body #gestao .reform-media-frame { max-width: 1080px; width: 100%; height: 420px; border-radius: 12px; }
+body #gestao { background: #f7f2fb; padding-block: clamp(64px,7vw,100px); }
+body #gestao .reform-selector--reports { grid-template-columns: minmax(300px,.42fr) minmax(0,1fr); grid-template-rows: auto 1fr auto; grid-template-areas: "intro media" "tabs media" "action media"; gap: 24px clamp(36px,5vw,76px); align-items: start; text-align: left; }
+body #gestao .reform-selector-intro h2 { max-width: 12ch; margin: 0; font-size: clamp(2.7rem,3.7vw,4.2rem); line-height: 1.06; text-align: left; }
+body #gestao .reform-tabs { display: flex; flex-direction: column; align-items: flex-start; justify-self: stretch; gap: 0; width: 100%; padding: 0; overflow: visible; }
+body #gestao .reform-tabs button { min-height: 52px; padding: 10px 0; border: 0; border-radius: 0; background: transparent; color: #65576f; font-size: clamp(1.13rem,1.55vw,1.45rem); font-weight: 540; text-align: left; }
+body #gestao .reform-tabs button[aria-selected=true] { color: var(--roxo); background: transparent; font-weight: 740; text-decoration: underline; text-underline-offset: 7px; }
+body #gestao .reform-selector-action { justify-self: start; align-self: end; }
+body #gestao .reform-media-frame { display: flex; flex-direction: column; max-width: none; width: 100%; height: clamp(470px,51vw,590px); padding: 12px; border: 0; border-radius: 14px; background: #fff; box-shadow: 0 28px 60px -36px rgb(42 26 58 / .4); }
+body #gestao .reform-media-stack { flex: 1; height: auto; min-height: 0; overflow: hidden; }
+body #gestao .reform-media-frame img.is-focused { transform: scale(1.35); transform-origin: 50% 0; }
+body #gestao .reform-report-expand { position: static; align-self: flex-end; padding: 12px 8px 4px; border: 0; border-radius: 0; box-shadow: none; background: transparent; color: var(--roxo); font-size: .9rem; }
+body #gestao .reform-selector--reports figcaption { max-width: 70ch; margin: 16px 0 0; font-size: 1.05rem; text-align: left; }
+body #gestao .reform-report-hint { font-size: .8rem; }
 body #gestao #resultado { scroll-margin-top: 104px; }
 body #gestao .reform-media-status { min-height: 0; }
 body #gestao .reform-media-status:empty { display: none; }
@@ -20,6 +32,16 @@ body #como-comecar h2 em, body #como-comecar .onboarding-track li > span { color
 body #como-comecar .onboarding-track p { color: #f4e7fb; }
 body #como-comecar .onboarding-line { background: rgb(255 255 255 / .55); }
 body #como-comecar .onboarding-track li > span { background: var(--roxo); }
+body #como-comecar > .container { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); align-items: start; gap: clamp(40px,7vw,110px); }
+body #como-comecar h2 { max-width: 10ch; font-size: clamp(3.1rem,5vw,5.4rem); line-height: 1.03; }
+body #como-comecar .onboarding-track { margin: 0; }
+body #como-comecar .onboarding-track ol { display: grid; grid-template-columns: 1fr; gap: 0; }
+body #como-comecar .onboarding-track li { padding: 0 0 26px 48px; }
+body #como-comecar .onboarding-track li:last-child { padding-bottom: 0; }
+body #como-comecar .onboarding-track li > span { top: 2px; left: 0; width: 32px; font-size: .9rem; font-weight: 700; }
+body #como-comecar .onboarding-track h3 { margin: 0 0 6px; font-size: clamp(1.2rem,1.8vw,1.6rem); }
+body #como-comecar .onboarding-track p { margin: 0; max-width: 44ch; font-size: 1rem; }
+body #como-comecar .onboarding-line { top: 0; bottom: 0; left: 15px; right: auto; width: 1px; height: auto; transform-origin: top; }
 
 body #faq.menu10-faq { background: #160b24; color: var(--branco); }
 body #faq .menu10-faq-header h2, body #faq .menu10-faq-item h3 button, body #faq .menu10-faq-plus { color: var(--branco); }
@@ -29,18 +51,50 @@ body #faq .menu10-faq-tabs button[aria-selected=true] { background: var(--roxo);
 body #faq .menu10-faq-item { border-color: rgb(255 255 255 / .18); }
 body #faq .menu10-faq-answer { color: #e9dcef; }
 body #faq :focus-visible { outline-color: #d6a6f2; }
+body #faq > .container { display: grid; grid-template-columns: minmax(240px,.62fr) minmax(0,1fr); grid-template-areas: "heading tabs" "heading panels"; gap: 12px clamp(48px,7vw,110px); }
+body #faq .menu10-faq-header { grid-area: heading; max-width: none; margin: 0; text-align: left; }
+body #faq .menu10-faq-header h2 { max-width: 11ch; font-size: clamp(3.2rem,5.1vw,5.5rem); line-height: 1.05; }
+body #faq .menu10-faq-tabs { grid-area: tabs; justify-self: stretch; justify-content: flex-start; gap: 20px; width: 100%; margin: 0; padding: 0; border-bottom: 1px solid rgb(255 255 255 / .22); }
+body #faq .menu10-faq-tabs button, body #faq .menu10-faq-tabs button[aria-selected=true] { min-height: 52px; padding: 10px 0 12px; border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: transparent; color: #d7c6e0; font-size: .98rem; }
+body #faq .menu10-faq-tabs button[aria-selected=true] { border-bottom-color: #e9bfff; color: #fff; }
+body #faq .menu10-faq-panels { grid-area: panels; max-width: none; width: 100%; min-height: 0; margin: 8px 0 0; }
+body #faq .menu10-faq-item { margin: 0; }
+body #faq .menu10-faq-item h3 button { min-height: 76px; padding: 20px 0; font-size: clamp(1.05rem,1.45vw,1.3rem); }
+body #faq .menu10-faq-answer { max-width: 62ch; padding: 0 36px 24px 0; font-size: 1rem; }
 
 body #suporte { border-top: 1px solid var(--lilas-borda); }
 body #suporte .support-columns { gap: 64px; align-items: center; }
 body #suporte .support-map-stage { height: 360px; border-radius: 12px; }
 body .rodape { padding-top: 48px; }
+body .rodape-grade { gap: clamp(40px,7vw,112px); padding-bottom: 34px; }
+body .rodape-base { padding-bottom: 30px; }
+body .rodape-grade a { text-decoration: none; }
+body .marcas { padding-block: 17px; }
+body .marcas-grupo { --distancia: clamp(24px,4vw,70px); }
+body .marcas-grupo li { display: grid; place-items: center; width: 144px; height: 78px; }
+body .marcas-grupo img { display: block; width: 100%; height: 100%; max-width: 130px; max-height: 76px; object-fit: contain; }
+body .support-map iframe.is-loaded { pointer-events: none; }
 @media(max-width: 759px) {
   body .whats-flutuante { display: none; }
-  body #diferenciais > .container { grid-template-columns: 1fr; gap: 24px; }
-  body #diferenciais h2 { grid-row: auto; }
-  body #gestao .reform-tabs { flex-wrap: wrap; justify-content: center; overflow: visible; }
-  body #gestao .reform-media-frame { height: 240px; aspect-ratio: auto; }
-  body #gestao .reform-media-frame img.is-focused { transform: scale(2); transform-origin: top left; }
+  body #diferenciais > .container { grid-template-columns: 1fr; gap: 30px; }
+  body #diferenciais .pricing-statement span { font-size: clamp(8rem,35vw,12rem); }
+  body #diferenciais .pricing-statement strong { margin-top: 10px; }
+  body #gestao .reform-selector--reports { grid-template-columns: 1fr; grid-template-rows: auto; grid-template-areas: "intro" "tabs" "media" "action"; gap: 20px; }
+  body #gestao .reform-selector-intro h2 { font-size: clamp(2.6rem,10vw,3.7rem); }
+  body #gestao .reform-tabs { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; gap: 4px 18px; }
+  body #gestao .reform-tabs button { min-height: 44px; padding: 7px 0; font-size: 1rem; }
+  body #gestao .reform-media-frame { height: 300px; aspect-ratio: auto; }
+  body #gestao .reform-media-frame img.is-focused { transform: scale(1.4); transform-origin: top left; }
+  body #gestao .reform-selector-action { justify-self: start; }
   body #suporte .support-columns { gap: 32px; }
   body #suporte .support-map-stage { height: 240px; }
+  body #como-comecar > .container { grid-template-columns: 1fr; gap: 32px; }
+  body #como-comecar h2 { max-width: 12ch; }
+  body #faq > .container { grid-template-columns: 1fr; grid-template-areas: "heading" "tabs" "panels"; gap: 24px; }
+  body #faq .menu10-faq-header h2 { font-size: clamp(2.8rem,10vw,4rem); }
+  body #faq .menu10-faq-tabs { gap: 16px; flex-wrap: nowrap; overflow-x: auto; }
+  body #faq .menu10-faq-tabs button { font-size: .86rem; }
+  body #faq .menu10-faq-panels { margin: 0; }
+  body .marcas-grupo li { width: 102px; height: 62px; }
+  body .marcas-grupo img { max-width: 96px; max-height: 60px; }
 }

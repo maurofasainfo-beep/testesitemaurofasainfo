@@ -25,11 +25,10 @@ export function SupportMap() {
         <p>{address}</p><a href={maps} target="_blank" rel="noopener">Ver no Google Maps</a>
       </div>
       {!blocked && <iframe ref={frame} src={embed} title="Mapa com a localização da Fasa Informática em Cerquilho" loading="lazy" width="600" height="320"
-        tabIndex={loaded ? 0 : -1} aria-hidden={!loaded}
+        tabIndex={-1} aria-hidden="true"
         referrerPolicy="no-referrer-when-downgrade" onLoad={() => setLoaded(true)}
         className={loaded ? "is-loaded" : undefined} />}
     </div>
-    {/* Cross-origin frames can report load even for an error page. Keep an external fallback visible in every state. */}
-    <div className="support-map-address"><p>{address}</p><a href={maps} target="_blank" rel="noopener">Ver no Google Maps</a></div>
+    {/* The map is visual only. The address and accessible external links live beside it in Support. */}
   </div>;
 }

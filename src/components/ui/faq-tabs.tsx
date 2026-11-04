@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useRef, useState, useSyncExternalStore, type HTMLAttributes, type KeyboardEvent } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { FAQContent, FAQQuestion } from "@/config/faq";
@@ -21,7 +21,7 @@ const subscribeMotion = (notify: () => void) => {
 const motionSnapshot = () => window.matchMedia(query).matches;
 const serverSnapshot = () => true;
 
-export function FAQ({ title = "Perguntas frequentes", subtitle = "Antes de escolher o Menu10", categories, faqData, className, ...props }: FAQProps) {
+export function FAQ({ title = "Perguntas frequentes", categories, faqData, className, ...props }: FAQProps) {
   const uid = `faq-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const keys = Object.keys(categories).filter(key => faqData[key]?.length);
   const [selectedCategory, setSelectedCategory] = useState(keys[0] ?? "");
@@ -44,7 +44,6 @@ export function FAQ({ title = "Perguntas frequentes", subtitle = "Antes de escol
   return <MarketingMotion><section {...props} className={cn("menu10-faq relative min-w-0", className)} aria-labelledby={`${uid}-title`}>
     <div className="container">
       <header className="menu10-faq-header">
-        {subtitle && <p>{subtitle}</p>}
         <h2 id={`${uid}-title`}>{title}</h2>
       </header>
       <div className="menu10-faq-tabs" role="tablist" aria-label="Categorias de perguntas">
@@ -53,11 +52,6 @@ export function FAQ({ title = "Perguntas frequentes", subtitle = "Antes de escol
           tabIndex={selected === key ? 0 : -1} onClick={() => setSelectedCategory(key)}
           onFocus={() => setSelectedCategory(key)} onKeyDown={event => navigate(event, index)}>
           <span className="menu10-faq-tab-label">{categories[key]}</span>
-          <AnimatePresence initial={false}>
-            {selected === key && <motion.span key="highlight" aria-hidden="true" className="menu10-faq-tab-fill"
-              initial={reduced ? false : { y: "100%" }} animate={{ y: "0%" }} exit={{ y: "100%" }}
-              transition={{ duration: reduced ? 0 : .2, ease: "easeOut" }} />}
-          </AnimatePresence>
         </button>)}
       </div>
       <div className="menu10-faq-panels">
@@ -72,18 +66,18 @@ export function FAQ({ title = "Perguntas frequentes", subtitle = "Antes de escol
 
 function FAQList({ questions, reduced }: { questions: FAQQuestion[]; reduced: boolean }) {
   const [openId, setOpenId] = useState<string | null>(null);
-  const content = questions.map((faq, index) => <FAQItem key={faq.id} {...faq} number={index + 1} open={openId === faq.id} reduced={reduced}
+  const content = questions.map(faq => <FAQItem key={faq.id} {...faq} open={openId === faq.id} reduced={reduced}
     toggle={() => setOpenId(current => current === faq.id ? null : faq.id)} />);
   // Category changes are immediate; no exit queue can show a stale category.
   return reduced ? <div>{content}</div> : <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
     transition={{ duration: .2, ease: "easeOut" }}>{content}</motion.div>;
 }
 
-function FAQItem({ question, answer, open, reduced, toggle, number }: FAQQuestion & { open: boolean; reduced: boolean; toggle: () => void; number: number }) {
+function FAQItem({ question, answer, open, reduced, toggle }: FAQQuestion & { open: boolean; reduced: boolean; toggle: () => void }) {
   const uid = useId();
   return <div className={cn("menu10-faq-item", open && "is-open")}>
     <h3><button type="button" id={`${uid}-question`} aria-expanded={open} aria-controls={`${uid}-answer`} onClick={toggle}>
-      <span className="menu10-faq-number" aria-hidden="true">{String(number).padStart(2, "0")}</span><span className="menu10-faq-question">{question}</span>
+      <span className="menu10-faq-question">{question}</span>
       <motion.span className="menu10-faq-plus" aria-hidden="true" initial={false}
         animate={{ rotate: open ? 45 : 0 }} transition={{ duration: reduced ? 0 : .2 }}>
         <Plus size={20} strokeWidth={1.75} aria-hidden="true" />

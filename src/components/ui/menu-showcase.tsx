@@ -61,9 +61,8 @@ export function MenuShowcase({ action }: { action: ReactNode }) {
   const item = pairs[active];
   return <div className="menu-showcase">
     <div className="menu-showcase-intro">
-      <p className="menu-showcase-eyebrow">Seu negócio, sua apresentação</p>
       <h2 id="reform-menu-title">Seu cardápio.<br /><em>Do seu jeito.</em></h2>
-      <p>Escolha um segmento e experimente os dois layouts. Categorias em imagens ou produtos em lista: compare no mesmo celular.</p>
+      <p>Escolha o tipo de negócio. Depois, deslize no celular para comparar as duas formas de mostrar o mesmo cardápio.</p>
     </div>
     <div className="connoisseur-tabs" role="tablist" aria-label="Tipos de negócio">
       {pairs.map((entry, index) => <button key={entry.id} type="button" role="tab" id={`${uid}-tab-${entry.id}`}
@@ -73,7 +72,6 @@ export function MenuShowcase({ action }: { action: ReactNode }) {
           if (event.pointerType === "mouse") void select(index);
           else void preload(index).catch(() => {});
         }}>
-        <span className="connoisseur-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
         <motion.span className="connoisseur-name" initial={false} animate={{ x: index === active ? 8 : 0 }} transition={{ duration: reducedMotion ? 0 : .22, ease: [.22, 1, .36, 1] }}>{entry.label}</motion.span>
       </button>)}
     </div>
@@ -82,10 +80,7 @@ export function MenuShowcase({ action }: { action: ReactNode }) {
       <div ref={visual}><CompareReveal before={item.layouts[0]} after={item.layouts[1]} position={position} onPositionChange={setPosition} /></div>
       <p className="menu-showcase-status" role="status">{error || (busy ? "Carregando os dois layouts…" : "")}</p>
     </div>
-    <div className="menu-showcase-details">
-      <div><h3>Categorias em destaque</h3><p>Imagens maiores para apresentar categorias, combos e promoções.</p></div>
-      <div><h3>Produtos à vista</h3><p>Nome, foto e preço em uma lista, com ofertas e busca.</p></div>
-    </div>
+    <p className="menu-showcase-details"><span><strong>Layout 1</strong> Categorias em imagens</span><span><strong>Layout 2</strong> Produtos em lista</span></p>
     <div className="menu-showcase-action">{action}</div>
   </div>;
 }

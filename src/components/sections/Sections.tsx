@@ -13,20 +13,23 @@ function WhatsApp({ children, className = "botao botao-roxo", intent = "demo" }:
 }
 export function Menus() {
   return <section id="cardapios" className="reform-section reform-menus" aria-labelledby="reform-menu-title"><div className="container">
-    <MenuShowcase action={<WhatsApp className="link-roxo" intent="menu">Quero o meu assim</WhatsApp>} />
+    <MenuShowcase action={<WhatsApp className="botao botao-roxo" intent="menu">Quero o meu assim</WhatsApp>} />
   </div></section>;
 }
 export function Pricing() {
   return <section id="diferenciais" className="reform-section reform-pricing" aria-labelledby="reform-price-title"><div className="container">
-    <h2 id="reform-price-title">Cada pedido é seu.<br /><em>Sem comissão.</em></h2>
-    <p>Você paga uma mensalidade, não uma porcentagem das suas vendas. A partir de R$ 200/mês. O valor depende do número de computadores e dos módulos que você usa.</p>
-    <WhatsApp intent="pricing">Consultar valores no WhatsApp</WhatsApp>
+    <div className="pricing-statement" aria-label="Zero por cento de comissão por pedido"><span>0%</span><strong>de comissão por pedido</strong></div>
+    <div className="pricing-copy">
+      <h2 id="reform-price-title">Cada pedido<br />continua sendo seu.</h2>
+      <p>Você paga uma mensalidade, não uma porcentagem das suas vendas. A partir de R$ 200/mês. O valor depende do número de computadores e dos módulos que você usa.</p>
+      <WhatsApp intent="pricing">Consultar valores no WhatsApp</WhatsApp>
+    </div>
   </div></section>;
 }
 export { Comparison };
 export function Reports() {
   return <section id="gestao" className="reform-section reform-reports" aria-labelledby="reform-report-title"><span id="resultado" className="visualmente-oculto" aria-hidden="true" /><div className="container">
-    <MediaSelector id="report" kind="reports" items={media.reports} label="Telas do relatório" intro={<h2 id="reform-report-title">No fim do dia, você sabe <em>exatamente como foi.</em></h2>}
+    <MediaSelector id="report" kind="reports" items={media.reports} label="Telas do relatório" intro={<h2 id="reform-report-title">O pedido termina.<br /><em>A leitura começa.</em></h2>}
       action={<WhatsApp intent="reports">Quero ver os meus números</WhatsApp>} />
   </div></section>;
 }
