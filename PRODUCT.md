@@ -3,7 +3,7 @@
 ## Platform
 web
 ## Users
-Donos de restaurantes e operações de delivery avaliando um sistema de gestão.
+Donos de restaurantes, operações de delivery e outros estabelecimentos com vendas locais, sem prioridade entre esses públicos, avaliando um sistema de gestão.
 ## Product Purpose
 Apresentar o sistema e levar o visitante a solicitar uma demonstração pelo WhatsApp da Fasa Informática.
 ## Capabilities and Constraints
